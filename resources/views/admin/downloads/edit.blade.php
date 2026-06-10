@@ -1,0 +1,47 @@
+@extends('layouts.admin')
+@section('title', 'Edit Download')
+@section('page-title', 'Edit Download')
+@section('content')
+<div class="card border-0 shadow-sm" style="max-width:600px">
+    <div class="card-body p-4">
+        <form action="{{ route('admin.downloads.update', $download) }}" method="POST" enctype="multipart/form-data">
+            @csrf @method('PUT')
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Title <span class="text-danger">*</span></label>
+                    <input type="text" name="title" class="form-control" value="{{ old('title', $download->title) }}" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="2">{{ old('description', $download->description) }}</textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-select">
+                        @foreach($categories as $k => $v) <option value="{{ $k }}" {{ old('category', $download->category) === $k ? 'selected' : '' }}>{{ $v }}</option> @endforeach
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Order</label>
+                    <input type="number" name="order" class="form-control" value="{{ old('order', $download->order) }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Replace File</label>
+                    <p class="small text-muted">Current: {{ basename($download->file) }}</p>
+                    <input type="file" name="file" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                </div>
+                <div class="col-12">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="is_active" value="1" {{ $download->is_active ? 'checked' : '' }}>
+                        <label class="form-check-label">Active</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn" style="background:var(--primary);color:#fff"><i class="fas fa-save me-2"></i>Update</button>
+                <a href="{{ route('admin.downloads.index') }}" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
