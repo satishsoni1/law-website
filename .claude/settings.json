@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk 'NR>=170 && NR<=190 {printf \"%d\\\\t%s\\\\n\", NR, $0}' /Users/apple/Documents/law-college/resources/views/front/home.blade.php)",
+      "Bash(grep -n 'style=\"background:{{ $item->type' /Users/apple/Documents/law-college/resources/views/front/home.blade.php)"
+    ]
+  }
+}

@@ -1,236 +1,844 @@
 @extends('layouts.front')
 
+@push('styles')
+<style>
+    /* ── Hero ──────────────────────────────────────── */
+    .hero-section {
+        position: relative;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--dark);
+    }
+    .hero-bg-slider {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+    .hero-bg-slider .carousel,
+    .hero-bg-slider .carousel-inner,
+    .hero-bg-slider .carousel-item {
+        height: 100%;
+    }
+    .hero-bg-slider .carousel-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        filter: brightness(.38) saturate(1.1);
+    }
+    .hero-bg-slider .carousel-item .fallback-bg {
+        width: 100%; height: 100%;
+        background: linear-gradient(145deg, var(--primary-dark) 0%, var(--dark) 60%, var(--accent) 100%);
+    }
+    /* geometric overlay */
+    .hero-section::after {
+        content: '';
+        position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(105deg, rgba(139,26,26,.72) 0%, rgba(15,23,41,.55) 55%, rgba(30,58,95,.45) 100%);
+    }
+    .hero-content {
+        position: relative; z-index: 2;
+        width: 100%;
+    }
+    .hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: rgba(200,151,58,.18);
+        border: 1px solid rgba(200,151,58,.35);
+        color: var(--secondary-light);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 30px;
+        margin-bottom: 22px;
+        backdrop-filter: blur(6px);
+    }
+    .hero-eyebrow i { font-size: 10px; }
+    .hero-title {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(2.4rem, 5.5vw, 4rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.18;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+    .hero-title .line-gold { color: var(--secondary-light); }
+    .hero-subtitle {
+        font-size: 1.05rem;
+        color: rgba(255,255,255,.78);
+        line-height: 1.75;
+        max-width: 560px;
+        margin-bottom: 36px;
+    }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-cta-primary {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        color: #fff;
+        font-weight: 700; font-size: .95rem;
+        padding: 14px 30px;
+        border-radius: 12px;
+        text-decoration: none;
+        box-shadow: 0 6px 25px rgba(200,151,58,.4);
+        transition: all .3s ease;
+        letter-spacing: 0.01em;
+    }
+    .hero-cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 35px rgba(200,151,58,.55);
+        color: #fff;
+    }
+    .hero-cta-secondary {
+        display: inline-flex; align-items: center; gap: 8px;
+        border: 2px solid rgba(255,255,255,.45);
+        color: #fff;
+        font-weight: 600; font-size: .95rem;
+        padding: 12px 28px;
+        border-radius: 12px;
+        text-decoration: none;
+        backdrop-filter: blur(6px);
+        background: rgba(255,255,255,.07);
+        transition: all .3s ease;
+    }
+    .hero-cta-secondary:hover {
+        border-color: rgba(255,255,255,.85);
+        background: rgba(255,255,255,.15);
+        color: #fff;
+        transform: translateY(-3px);
+    }
+
+    /* accred badges */
+    .hero-accred {
+        display: flex; flex-wrap: wrap; gap: 10px;
+        margin-top: 40px;
+    }
+    .accred-chip {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: rgba(255,255,255,.1);
+        border: 1px solid rgba(255,255,255,.18);
+        color: rgba(255,255,255,.85);
+        font-size: .78rem; font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 8px;
+        backdrop-filter: blur(8px);
+        letter-spacing: 0.02em;
+    }
+    .accred-chip i { color: var(--secondary-light); font-size: 11px; }
+
+    /* hero indicators */
+    .hero-bg-slider .carousel-indicators {
+        bottom: 24px; z-index: 10;
+        margin-bottom: 0;
+    }
+    .hero-bg-slider .carousel-indicators [data-bs-target] {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255,255,255,.35);
+        transition: all .3s ease;
+        margin: 0 4px;
+    }
+    .hero-bg-slider .carousel-indicators .active {
+        background: var(--secondary);
+        width: 28px;
+        border-radius: 4px;
+    }
+
+    /* ── Stats Bar ─────────────────────────────────── */
+    .stats-bar {
+        background: #fff;
+        box-shadow: 0 4px 30px rgba(0,0,0,.08);
+        position: relative; z-index: 3;
+        margin-top: -1px;
+    }
+    .stat-item {
+        padding: 28px 20px;
+        text-align: center;
+        border-right: 1px solid #f0f0f0;
+        transition: all .3s ease;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(139,26,26,.03); }
+    .stat-number {
+        font-family: 'Fraunces', serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1;
+        display: block;
+    }
+    .stat-label {
+        font-size: .78rem;
+        font-weight: 600;
+        color: #888;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        margin-top: 5px;
+        display: block;
+    }
+    .stat-icon {
+        width: 40px; height: 40px;
+        border-radius: 10px;
+        background: rgba(139,26,26,.08);
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: var(--primary);
+    }
+
+    /* ── About + Notice ────────────────────────────── */
+    .about-feature-card {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: #fff;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all .3s ease;
+    }
+    .about-feature-card:hover {
+        border-color: var(--secondary);
+        box-shadow: 0 4px 20px rgba(200,151,58,.12);
+    }
+    .about-feature-icon {
+        width: 44px; height: 44px; flex-shrink: 0;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 18px;
+    }
+
+    /* ── Why Choose Us ─────────────────────────────── */
+    .why-card {
+        background: #fff;
+        border-radius: var(--card-radius);
+        padding: 30px 24px;
+        box-shadow: 0 2px 16px rgba(0,0,0,.055);
+        transition: all .3s ease;
+        height: 100%;
+        border-bottom: 3px solid transparent;
+    }
+    .why-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0,0,0,.1);
+        border-bottom-color: var(--secondary);
+    }
+    .why-icon {
+        width: 56px; height: 56px;
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    /* ── Leadership Cards ──────────────────────────── */
+    .leader-card {
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0,0,0,.07);
+        transition: all .3s ease;
+        background: #fff;
+        height: 100%;
+    }
+    .leader-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 40px rgba(0,0,0,.12);
+    }
+    .leader-card-top {
+        padding: 28px 20px 22px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .leader-card-top::before {
+        content: '';
+        position: absolute; top: -40px; right: -40px;
+        width: 130px; height: 130px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.06);
+    }
+    .leader-avatar-ring {
+        width: 70px; height: 70px;
+        border-radius: 50%;
+        border: 3px solid rgba(255,255,255,.3);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 14px;
+        background: rgba(255,255,255,.1);
+    }
+
+    /* ── Course Cards ──────────────────────────────── */
+    .course-pill {
+        display: inline-block;
+        background: rgba(200,151,58,.12);
+        color: var(--secondary);
+        font-size: .72rem; font-weight: 700;
+        letter-spacing: .06em; text-transform: uppercase;
+        padding: 4px 10px; border-radius: 6px;
+        margin-bottom: 8px;
+    }
+
+    /* ── News Cards ────────────────────────────────── */
+    .news-card {
+        border: none;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0,0,0,.06);
+        transition: all .3s ease;
+        height: 100%;
+    }
+    .news-card:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0,0,0,.11); }
+    .news-card .card-img-wrap {
+        height: 195px; overflow: hidden;
+    }
+    .news-card .card-img-wrap img,
+    .news-card .card-img-wrap .img-placeholder {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform .4s ease;
+    }
+    .news-card:hover .card-img-wrap img { transform: scale(1.05); }
+
+    /* ── Gallery Grid ──────────────────────────────── */
+    .gallery-thumb {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        height: 165px;
+        display: block;
+    }
+    .gallery-thumb img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform .45s ease;
+    }
+    .gallery-thumb:hover img { transform: scale(1.08); }
+    .gallery-thumb .gallery-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
+        display: flex; align-items: flex-end;
+        padding: 10px 12px;
+        transition: all .3s ease;
+    }
+    .gallery-thumb:hover .gallery-overlay { background: linear-gradient(to top, rgba(139,26,26,.7) 0%, transparent 60%); }
+    .gallery-thumb .gallery-title {
+        color: #fff; font-size: .78rem; font-weight: 600;
+        line-height: 1.3;
+    }
+
+    /* ── Testimonials ──────────────────────────────── */
+    .testimonial-card {
+        background: rgba(255,255,255,.07);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: var(--card-radius);
+        padding: 28px;
+        transition: all .3s ease;
+        height: 100%;
+    }
+    .testimonial-card:hover {
+        background: rgba(255,255,255,.12);
+        border-color: rgba(200,151,58,.3);
+        transform: translateY(-4px);
+    }
+    .star-rating i { color: var(--secondary); font-size: 13px; }
+
+    /* ── CTA Section ───────────────────────────────── */
+    .cta-section {
+        background: linear-gradient(135deg, var(--dark) 0%, #1a0808 40%, var(--accent) 100%);
+        position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ── Why Icon Variants ─────────────────────────── */
+    .wi-primary   { background: rgba(139,26,26,.09); color: var(--primary); }
+    .wi-secondary { background: rgba(200,151,58,.10); color: var(--secondary); }
+    .wi-accent    { background: rgba(30,58,95,.09);   color: var(--accent); }
+
+    /* ── Leader Card Backgrounds ───────────────────── */
+    .lc-1 { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+    .lc-2 { background: linear-gradient(135deg, #8a6820, var(--secondary)); }
+    .lc-3 { background: linear-gradient(135deg, var(--accent), #152b47); }
+    .lc-4 { background: linear-gradient(135deg, #1a5c35, #0e3b22); }
+
+    /* ── News Badge ────────────────────────────────── */
+    .news-badge {
+        display: inline-block;
+        font-size: .72rem; font-weight: 700;
+        letter-spacing: .05em; text-transform: uppercase;
+        padding: 4px 10px; border-radius: 6px;
+        margin-bottom: 8px;
+    }
+    .news-badge-event { background: rgba(200,151,58,.15); color: var(--secondary); }
+    .news-badge-news  { background: rgba(139,26,26,.1);   color: var(--primary); }
+
+    /* ── Scrolling Counters ────────────────────────── */
+    .counter-num { display: inline-block; }
+</style>
+@endpush
+
 @section('content')
 
-{{-- Hero Slider --}}
-<div id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        @foreach($sliders as $i => $slide)
-            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="{{ $i }}" class="{{ $i === 0 ? 'active' : '' }}"></button>
-        @endforeach
-    </div>
-    <div class="carousel-inner">
-        @forelse($sliders as $i => $slide)
-            <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                <img src="{{ asset('storage/' . $slide->image) }}" class="d-block w-100" alt="{{ $slide->title }}">
-                <div class="carousel-caption">
-                    <h1 data-aos="fade-right">{{ $slide->title }}</h1>
-                    @if($slide->subtitle)
-                        <p class="lead" data-aos="fade-right" data-aos-delay="200">{{ $slide->subtitle }}</p>
-                    @endif
-                    @if($slide->button_text)
-                        <a href="{{ $slide->button_url ?? route('admissions.index') }}" class="btn btn-lg mt-2" style="background:var(--secondary);color:#fff" data-aos="fade-up" data-aos-delay="400">
-                            {{ $slide->button_text }}
-                        </a>
-                    @endif
-                </div>
+{{-- ══════════════════════════════════════════════════
+     HERO
+═════════════════════════════════════════════════════ --}}
+<section class="hero-section">
+
+    {{-- Background carousel --}}
+    <div class="hero-bg-slider">
+        <div id="heroBgSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-indicators">
+                @foreach($sliders as $i => $s)
+                    <button type="button" data-bs-target="#heroBgSlider" data-bs-slide-to="{{ $i }}" class="{{ $i === 0 ? 'active' : '' }}"></button>
+                @endforeach
+                @if($sliders->isEmpty())
+                    <button type="button" data-bs-target="#heroBgSlider" data-bs-slide-to="0" class="active"></button>
+                @endif
             </div>
-        @empty
-            <div class="carousel-item active">
-                <div style="height:580px;background:linear-gradient(135deg,var(--primary) 0%,var(--dark) 100%);display:flex;align-items:center;justify-content:center;">
-                    <div class="text-center text-white px-4">
-                        <h1 style="font-size:3rem;font-family:'Playfair Display',serif;">K.T.S.P.M's Law College, Khopoli</h1>
-                        <p class="lead mt-3">Affiliated to University of Mumbai | Approved by Bar Council of India</p>
-                        <a href="{{ route('admissions.index') }}" class="btn btn-lg mt-3" style="background:var(--secondary);color:#fff">Apply for Admission</a>
+            <div class="carousel-inner" style="height:100%">
+                @forelse($sliders as $i => $slide)
+                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}" style="height:100%">
+                        <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}">
+                    </div>
+                @empty
+                    <div class="carousel-item active" style="height:100%">
+                        <div class="fallback-bg"></div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- Hero content --}}
+    <div class="hero-content py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-xl-7" data-aos="fade-right" data-aos-duration="900">
+                    <div class="hero-eyebrow">
+                        <i class="fas fa-balance-scale"></i>
+                        Established &amp; Approved College of Law
+                    </div>
+                    <h1 class="hero-title">
+                        Shape Your Future in
+                        <span class="line-gold">Law &amp; Justice</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        K.T.S.P.M's Law College, Khopoli — affiliated to University of Mumbai and
+                        approved by Bar Council of India. Empowering students from Raigad &amp; beyond with
+                        world-class legal education.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="{{ route('admissions.index') }}" class="hero-cta-primary">
+                            <i class="fas fa-graduation-cap"></i> Apply for Admission
+                        </a>
+                        <a href="{{ route('courses.index') }}" class="hero-cta-secondary">
+                            <i class="fas fa-book-open"></i> Explore Courses
+                        </a>
+                    </div>
+                    <div class="hero-accred">
+                        <span class="accred-chip"><i class="fas fa-university"></i> University of Mumbai</span>
+                        <span class="accred-chip"><i class="fas fa-gavel"></i> Bar Council of India</span>
+                        <span class="accred-chip"><i class="fas fa-star"></i> Est. 2010</span>
                     </div>
                 </div>
-            </div>
-        @endforelse
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
-
-{{-- Quick Stats --}}
-<section style="background:var(--primary);padding:20px 0;">
-    <div class="container">
-        <div class="row text-white text-center">
-            <div class="col-6 col-md-3 py-3 border-end border-secondary">
-                <h3 class="mb-0" style="color:var(--secondary);font-size:2rem;">{{ \App\Models\Admission::where('status','approved')->count() }}+</h3>
-                <small>Students Enrolled</small>
-            </div>
-            <div class="col-6 col-md-3 py-3 border-end border-secondary">
-                <h3 class="mb-0" style="color:var(--secondary);font-size:2rem;">{{ \App\Models\Faculty::active()->count() }}+</h3>
-                <small>Faculty Members</small>
-            </div>
-            <div class="col-6 col-md-3 py-3 border-end border-secondary">
-                <h3 class="mb-0" style="color:var(--secondary);font-size:2rem;">{{ \App\Models\Course::active()->count() }}</h3>
-                <small>Courses Offered</small>
-            </div>
-            <div class="col-6 col-md-3 py-3">
-                <h3 class="mb-0" style="color:var(--secondary);font-size:2rem;">{{ date('Y') - 2010 }}+</h3>
-                <small>Years of Excellence</small>
             </div>
         </div>
     </div>
 </section>
 
-{{-- About + Notice Board --}}
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-8" data-aos="fade-right">
-                <h2 class="section-title text-maroon">Welcome to K.T.S.P.M's Law College</h2>
-                <p class="lead">Established under the K.T.S.P. Mandal, Khopoli, our Law College is affiliated to the University of Mumbai and approved by the Bar Council of India. We are committed to shaping the future legal professionals of India.</p>
-                <p>Our college provides a comprehensive legal education combining theoretical knowledge with practical skills. With experienced faculty, a well-equipped library, and modern infrastructure, we offer students an environment conducive to learning.</p>
-                <div class="row mt-4 g-3">
+{{-- ══════════════════════════════════════════════════
+     STATS BAR
+═════════════════════════════════════════════════════ --}}
+<div class="stats-bar">
+    <div class="container-fluid px-0">
+        <div class="row g-0">
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <span class="stat-number counter-num" data-target="{{ \App\Models\Admission::where('status','approved')->count() }}">0</span>+
+                    <span class="stat-label">Students Enrolled</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="80">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <span class="stat-number counter-num" data-target="{{ \App\Models\Faculty::active()->count() }}">0</span>+
+                    <span class="stat-label">Faculty Members</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="160">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-book"></i></div>
+                    <span class="stat-number counter-num" data-target="{{ \App\Models\Course::active()->count() }}">0</span>
+                    <span class="stat-label">Courses Offered</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="240">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                    <span class="stat-number counter-num" data-target="{{ date('Y') - 2010 }}">0</span>+
+                    <span class="stat-label">Years of Excellence</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ══════════════════════════════════════════════════
+     ABOUT + NOTICE BOARD
+═════════════════════════════════════════════════════ --}}
+<section class="py-5 py-lg-6" style="background:#fff;">
+    <div class="container" style="--bs-gutter-x:2rem;">
+        <div class="row g-5 align-items-start">
+
+            {{-- About --}}
+            <div class="col-lg-7" data-aos="fade-right">
+                <span class="section-label">Welcome</span>
+                <h2 class="section-title">K.T.S.P.M's <span class="highlight">Law College</span>, Khopoli</h2>
+                <div class="title-divider mb-4"></div>
+                <p class="lead" style="color:#444;font-size:1rem;line-height:1.85;">
+                    Established under the K.T.S.P. Mandal, Khopoli, our Law College is affiliated to the
+                    University of Mumbai and approved by the Bar Council of India. We are committed to
+                    shaping the future legal professionals of India with both theoretical depth and
+                    practical excellence.
+                </p>
+                <p style="color:#666;font-size:.925rem;line-height:1.85;margin-top:14px;">
+                    With experienced faculty, a well-equipped library, moot court facility, and modern
+                    infrastructure, we provide students an environment that truly fosters learning,
+                    critical thinking, and professional growth.
+                </p>
+
+                <div class="row g-3 mt-3">
                     <div class="col-sm-6">
-                        <div class="d-flex align-items-start gap-3 p-3 rounded" style="background:#fff7f7;border-left:4px solid var(--primary)">
-                            <i class="fas fa-university text-maroon fa-2x"></i>
-                            <div><strong>Affiliated to</strong><br><small>University of Mumbai</small></div>
+                        <div class="about-feature-card">
+                            <div class="about-feature-icon" style="background:rgba(139,26,26,.08);">
+                                <i class="fas fa-university" style="color:var(--primary)"></i>
+                            </div>
+                            <div>
+                                <strong style="font-size:.9rem;color:#1a1a1a;">Affiliated to</strong>
+                                <p style="font-size:.82rem;color:#777;margin:2px 0 0;">University of Mumbai</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="d-flex align-items-start gap-3 p-3 rounded" style="background:#fff7f7;border-left:4px solid var(--secondary)">
-                            <i class="fas fa-balance-scale text-gold fa-2x"></i>
-                            <div><strong>Approved by</strong><br><small>Bar Council of India</small></div>
+                        <div class="about-feature-card">
+                            <div class="about-feature-icon" style="background:rgba(200,151,58,.1);">
+                                <i class="fas fa-gavel" style="color:var(--secondary)"></i>
+                            </div>
+                            <div>
+                                <strong style="font-size:.9rem;color:#1a1a1a;">Approved by</strong>
+                                <p style="font-size:.82rem;color:#777;margin:2px 0 0;">Bar Council of India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="about-feature-card">
+                            <div class="about-feature-icon" style="background:rgba(30,58,95,.08);">
+                                <i class="fas fa-book-reader" style="color:var(--accent)"></i>
+                            </div>
+                            <div>
+                                <strong style="font-size:.9rem;color:#1a1a1a;">Expert Faculty</strong>
+                                <p style="font-size:.82rem;color:#777;margin:2px 0 0;">Experienced legal educators</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="about-feature-card">
+                            <div class="about-feature-icon" style="background:rgba(139,26,26,.08);">
+                                <i class="fas fa-landmark" style="color:var(--primary)"></i>
+                            </div>
+                            <div>
+                                <strong style="font-size:.9rem;color:#1a1a1a;">Moot Court</strong>
+                                <p style="font-size:.82rem;color:#777;margin:2px 0 0;">Practical legal training</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('about') }}" class="btn btn-outline-danger mt-4">Read More About Us</a>
+
+                <div class="mt-4">
+                    <a href="{{ route('about') }}" class="btn-outline-primary-c">
+                        Know More About Us <i class="fas fa-arrow-right ms-2" style="font-size:12px"></i>
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-4" data-aos="fade-left">
-                <div class="notice-board p-4 h-100">
-                    <h5 class="mb-3" style="color:var(--secondary);"><i class="fas fa-bullhorn me-2"></i>Notice Board</h5>
+
+            {{-- Notice Board --}}
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="notice-board p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 style="color:var(--secondary-light);font-size:1.05rem;margin:0;">
+                            <i class="fas fa-bullhorn me-2"></i>Notice Board
+                        </h5>
+                        <span style="background:rgba(200,151,58,.2);color:var(--secondary-light);font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:6px;">LATEST</span>
+                    </div>
                     @forelse($notices as $notice)
                         <div class="notice-item">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
+                            <div class="d-flex justify-content-between align-items-start gap-2">
+                                <div style="flex:1;">
                                     @if($notice->is_pinned)
-                                        <span class="badge bg-warning text-dark mb-1">Pinned</span>
+                                        <span style="background:var(--secondary);color:#fff;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em;display:inline-block;margin-bottom:4px;">PINNED</span>
                                     @endif
-                                    <p class="mb-1" style="font-size:.9rem;">{{ Str::limit($notice->title, 70) }}</p>
-                                    <small class="text-warning opacity-75">{{ $notice->publish_date->format('d M Y') }}</small>
+                                    <p style="font-size:.875rem;line-height:1.55;margin:0;color:rgba(255,255,255,.9);">{{ Str::limit($notice->title, 72) }}</p>
+                                    <small style="color:rgba(255,255,255,.45);font-size:.75rem;margin-top:3px;display:block;">
+                                        <i class="fas fa-calendar-alt me-1"></i>{{ $notice->publish_date->format('d M Y') }}
+                                    </small>
                                 </div>
                                 @if($notice->attachment)
-                                    <a href="{{ route('notices.download', $notice) }}" class="text-warning ms-2" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ route('notices.download', $notice) }}" title="Download"
+                                       style="width:30px;height:30px;background:rgba(200,151,58,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--secondary-light);text-decoration:none;transition:all .3s ease;"
+                                       onmouseover="this.style.background='rgba(200,151,58,.4)'"
+                                       onmouseout="this.style.background='rgba(200,151,58,.2)'">
+                                        <i class="fas fa-download" style="font-size:11px;"></i>
+                                    </a>
                                 @endif
                             </div>
                         </div>
                     @empty
-                        <p class="text-center opacity-75 mt-4">No notices available.</p>
+                        <div class="text-center py-4" style="color:rgba(255,255,255,.45);">
+                            <i class="fas fa-bell-slash fa-2x mb-2 d-block opacity-50"></i>
+                            <small>No notices available.</small>
+                        </div>
                     @endforelse
-                    <a href="{{ route('notices.index') }}" class="btn btn-sm btn-outline-warning mt-3 w-100">View All Notices</a>
+                    <a href="{{ route('notices.index') }}"
+                       style="display:block;text-align:center;margin-top:16px;padding:10px;border:1px solid rgba(200,151,58,.35);border-radius:10px;color:var(--secondary-light);font-size:.84rem;font-weight:600;text-decoration:none;transition:all .3s ease;"
+                       onmouseover="this.style.background='rgba(200,151,58,.12)'"
+                       onmouseout="this.style.background='transparent'">
+                        View All Notices <i class="fas fa-arrow-right ms-1" style="font-size:11px"></i>
+                    </a>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
-{{-- Leadership Messages --}}
-<section class="py-5" style="background:#f8f9fa">
+{{-- ══════════════════════════════════════════════════
+     WHY CHOOSE US
+═════════════════════════════════════════════════════ --}}
+<section class="py-5 py-lg-6" style="background:var(--light);">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="section-title text-maroon">Messages from Leadership</h2>
-            <p class="text-muted">Guiding words from K.T.S.P. Mandal's leadership and our Principal</p>
+            <span class="section-label">Our Strengths</span>
+            <h2 class="section-title mt-2">Why Choose <span class="highlight">Our College?</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="section-subtitle mt-3">Everything you need to launch a successful legal career</p>
         </div>
         <div class="row g-4">
             @foreach([
-                [
-                    'name'    => 'Shri. Santosh Gurunath Jangam',
-                    'title'   => 'Chairman, K.T.S.P. Mandal',
-                    'icon'    => 'fa-crown',
-                    'color'   => 'var(--primary)',
-                    'route'   => 'mandal.chairman',
-                    'excerpt' => 'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.',
-                    'delay'   => 0,
-                ],
-                [
-                    'name'    => 'Shri. Abubakar Aadam Jalgaonkar',
-                    'title'   => 'Vice-Chairman, K.T.S.P. Mandal',
-                    'icon'    => 'fa-star',
-                    'color'   => 'var(--secondary)',
-                    'route'   => 'mandal.vice-chairman',
-                    'excerpt' => 'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.',
-                    'delay'   => 100,
-                ],
-                [
-                    'name'    => 'Shri. Kishor Balkrushna Patil',
-                    'title'   => 'Secretary, K.T.S.P. Mandal',
-                    'icon'    => 'fa-feather-alt',
-                    'color'   => '#1a1a2e',
-                    'route'   => 'mandal.secretary',
-                    'excerpt' => 'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.',
-                    'delay'   => 200,
-                ],
-                [
-                    'name'    => 'Principal',
-                    'title'   => 'K.T.S.P.M\'s Law College, Khopoli',
-                    'icon'    => 'fa-balance-scale',
-                    'color'   => '#1a5c35',
-                    'route'   => 'mandal.principal',
-                    'excerpt' => 'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.',
-                    'delay'   => 300,
-                ],
+                ['icon'=>'fa-chalkboard-teacher','cls'=>'wi-primary',  'title'=>'Expert Faculty',      'desc'=>'Learn from seasoned legal professionals, advocates, and retired judges with decades of real-world courtroom experience.'],
+                ['icon'=>'fa-book-open',         'cls'=>'wi-secondary','title'=>'Rich Law Library',    'desc'=>'Access thousands of law books, journals, judgments, and digital resources essential for rigorous legal research.'],
+                ['icon'=>'fa-landmark',           'cls'=>'wi-accent',   'title'=>'Moot Court Facility','desc'=>'Hone your advocacy skills in our dedicated moot court — practice arguments, debates, and oral pleadings.'],
+                ['icon'=>'fa-users',              'cls'=>'wi-primary',  'title'=>'Student Support',    'desc'=>'Dedicated mentoring, career counseling, placement assistance, and an active student bar council.'],
+                ['icon'=>'fa-certificate',        'cls'=>'wi-secondary','title'=>'BCI Approved',       'desc'=>'Fully approved by Bar Council of India ensuring your degree is recognized across all courts and legal bodies in India.'],
+                ['icon'=>'fa-map-marker-alt',     'cls'=>'wi-accent',   'title'=>'Accessible Location','desc'=>'Located in Khopoli, Raigad — easily reachable for students from Mumbai, Pune, and the entire Raigad district.'],
+            ] as $i => $w)
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ $i * 70 }}">
+                <div class="why-card">
+                    <div class="why-icon {{ $w['cls'] }}">
+                        <i class="fas {{ $w['icon'] }}"></i>
+                    </div>
+                    <h5 style="font-size:1.05rem;margin-bottom:10px;color:#1a1a1a;">{{ $w['title'] }}</h5>
+                    <p style="font-size:.875rem;color:#777;line-height:1.75;margin:0;">{{ $w['desc'] }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ══════════════════════════════════════════════════
+     COURSES
+═════════════════════════════════════════════════════ --}}
+@if($courses->count())
+<section class="py-5 py-lg-6" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Academic Programs</span>
+            <h2 class="section-title mt-2">Courses <span class="highlight">Offered</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="section-subtitle mt-3">Professionally designed legal programs to launch your career in law</p>
+        </div>
+        <div class="row g-4">
+            @foreach($courses as $i => $course)
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
+                    <div class="course-card h-100 d-flex flex-column">
+                        <div class="course-header">
+                            <div style="width:46px;height:46px;background:rgba(255,255,255,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+                                <i class="fas fa-graduation-cap" style="font-size:20px;color:var(--secondary-light);"></i>
+                            </div>
+                            <h5 style="font-size:1.1rem;margin-bottom:4px;font-weight:700;">{{ $course->name }}</h5>
+                            @if($course->short_name)
+                                <span style="font-size:.78rem;color:rgba(255,255,255,.6);font-family:'Plus Jakarta Sans',sans-serif;">{{ $course->short_name }}</span>
+                            @endif
+                        </div>
+                        <div class="p-4 flex-grow-1">
+                            <ul class="list-unstyled mb-3" style="font-size:.875rem;">
+                                <li class="d-flex align-items-center gap-2 py-1 border-bottom" style="border-color:#f5f5f5!important;color:#555;">
+                                    <i class="fas fa-clock" style="color:var(--secondary);width:14px;"></i>
+                                    <span><strong>Duration:</strong> {{ $course->duration }}</span>
+                                </li>
+                                @if($course->intake)
+                                <li class="d-flex align-items-center gap-2 py-1 border-bottom" style="border-color:#f5f5f5!important;color:#555;">
+                                    <i class="fas fa-users" style="color:var(--secondary);width:14px;"></i>
+                                    <span><strong>Intake:</strong> {{ $course->intake }} seats</span>
+                                </li>
+                                @endif
+                                @if($course->fees)
+                                <li class="d-flex align-items-center gap-2 py-1 border-bottom" style="border-color:#f5f5f5!important;color:#555;">
+                                    <i class="fas fa-rupee-sign" style="color:var(--secondary);width:14px;"></i>
+                                    <span><strong>Fees:</strong> {{ $course->fees }}</span>
+                                </li>
+                                @endif
+                                @if($course->medium)
+                                <li class="d-flex align-items-center gap-2 py-1" style="color:#555;">
+                                    <i class="fas fa-language" style="color:var(--secondary);width:14px;"></i>
+                                    <span><strong>Medium:</strong> {{ $course->medium }}</span>
+                                </li>
+                                @endif
+                            </ul>
+                            @if($course->description)
+                                <p style="font-size:.85rem;color:#888;line-height:1.7;margin:0;">{{ Str::limit($course->description, 110) }}</p>
+                            @endif
+                        </div>
+                        <div class="p-4 pt-0 d-flex gap-2">
+                            <a href="{{ route('courses.show', $course->slug) }}" class="btn-outline-primary-c flex-fill text-center" style="display:block;border-radius:10px;">Learn More</a>
+                            <a href="{{ route('admissions.index') }}" class="btn-secondary-c flex-fill text-center" style="display:block;">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('courses.index') }}" class="btn-outline-primary-c">
+                View All Courses <i class="fas fa-arrow-right ms-2" style="font-size:12px"></i>
+            </a>
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- ══════════════════════════════════════════════════
+     LEADERSHIP MESSAGES
+═════════════════════════════════════════════════════ --}}
+<section class="py-5 py-lg-6" style="background:var(--light);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Leadership</span>
+            <h2 class="section-title mt-2">Messages from <span class="highlight">Leadership</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="section-subtitle mt-3">Guiding words from K.T.S.P. Mandal's leadership and our Principal</p>
+        </div>
+        <div class="row g-4">
+            @foreach([
+                ['name'=>'Shri. Santosh Gurunath Jangam',  'title'=>'Chairman, K.T.S.P. Mandal',          'icon'=>'fa-crown',        'cls'=>'lc-1','route'=>'mandal.chairman',     'excerpt'=>'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.','delay'=>0],
+                ['name'=>'Shri. Abubakar Aadam Jalgaonkar','title'=>'Vice-Chairman, K.T.S.P. Mandal',     'icon'=>'fa-star',         'cls'=>'lc-2','route'=>'mandal.vice-chairman','excerpt'=>'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.','delay'=>100],
+                ['name'=>'Shri. Kishor Balkrushna Patil',  'title'=>'Secretary, K.T.S.P. Mandal',         'icon'=>'fa-feather-alt',  'cls'=>'lc-3','route'=>'mandal.secretary',    'excerpt'=>'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.','delay'=>200],
+                ['name'=>'Principal',                       'title'=>'K.T.S.P.M\'s Law College, Khopoli',  'icon'=>'fa-balance-scale','cls'=>'lc-4','route'=>'mandal.principal',    'excerpt'=>'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.','delay'=>300],
             ] as $leader)
             <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="{{ $leader['delay'] }}">
-                <div class="card h-100 border-0 shadow-sm" style="border-radius:16px;overflow:hidden;">
-                    <div class="py-4 px-3 text-center" style="background:{{ $leader['color'] }};">
-                        <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-                            <i class="fas {{ $leader['icon'] }} fa-2x" style="color:var(--secondary);"></i>
+                <div class="leader-card">
+                    <div class="leader-card-top {{ $leader['cls'] }}">
+                        <div class="leader-avatar-ring">
+                            <i class="fas {{ $leader['icon'] }} fa-xl" style="color:var(--secondary-light)"></i>
                         </div>
-                        <h6 class="mb-1 text-white" style="font-size:.95rem;">{{ $leader['name'] }}</h6>
-                        <small style="color:rgba(255,255,255,.75);">{{ $leader['title'] }}</small>
+                        <h6 style="color:#fff;font-size:.95rem;margin-bottom:4px;">{{ $leader['name'] }}</h6>
+                        <small style="color:rgba(255,255,255,.65);font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;">{{ $leader['title'] }}</small>
                     </div>
-                    <div class="card-body p-4 d-flex flex-column">
-                        <p class="text-muted fst-italic mb-3" style="font-size:.9rem;line-height:1.75;">
+                    <div class="p-4 d-flex flex-column" style="flex:1;">
+                        <p style="font-size:.875rem;color:#666;line-height:1.8;font-style:italic;flex:1;">
                             <i class="fas fa-quote-left me-1" style="color:var(--secondary);font-size:.75rem;"></i>
                             {{ $leader['excerpt'] }}
                             <i class="fas fa-quote-right ms-1" style="color:var(--secondary);font-size:.75rem;"></i>
                         </p>
-                        <div class="mt-auto">
-                            <a href="{{ route($leader['route']) }}" class="btn btn-sm w-100 text-white" style="background:{{ $leader['color'] }};border-radius:8px;">
-                                <i class="fas fa-book-open me-2"></i>Read Full Message
-                            </a>
-                        </div>
+                        <a href="{{ route($leader['route']) }}" class="btn-primary-c mt-3 text-center" style="display:block;font-size:.82rem;padding:9px 16px;">
+                            <i class="fas fa-book-open me-1"></i> Read Full Message
+                        </a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
-        <div class="text-center mt-4" data-aos="fade-up">
-            <a href="{{ route('mandal') }}" class="btn btn-outline-danger">
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('mandal') }}" class="btn-outline-primary-c">
                 <i class="fas fa-building me-2"></i>About K.T.S.P. Mandal
             </a>
         </div>
     </div>
 </section>
 
-{{-- Courses --}}
-@if($courses->count())
-<section class="py-5" style="background:#f8f9fa">
+{{-- ══════════════════════════════════════════════════
+     FACULTY
+═════════════════════════════════════════════════════ --}}
+@if($faculty->count())
+<section class="py-5 py-lg-6" style="background:#fff;">
     <div class="container">
-        <h2 class="section-title text-center text-maroon">Courses Offered</h2>
-        <p class="text-center text-muted mb-4">Explore our professionally designed legal programs</p>
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Our Team</span>
+            <h2 class="section-title mt-2">Meet Our <span class="highlight">Faculty</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="section-subtitle mt-3">Experienced legal educators shaping tomorrow's lawyers</p>
+        </div>
+        <div class="row g-3 justify-content-center">
+            @foreach($faculty as $i => $member)
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="{{ ($i % 6) * 60 }}">
+                    <div class="faculty-card">
+                        @if($member->photo)
+                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" class="faculty-avatar">
+                        @else
+                            <div class="faculty-avatar-placeholder">{{ strtoupper(substr($member->name, 0, 1)) }}</div>
+                        @endif
+                        <h6 style="font-size:.85rem;margin-bottom:3px;color:#1a1a1a;font-weight:600;">{{ $member->name }}</h6>
+                        <small style="color:#999;font-size:.78rem;">{{ $member->designation }}</small>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('faculty.index') }}" class="btn-outline-primary-c">View All Faculty</a>
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- ══════════════════════════════════════════════════
+     NEWS & EVENTS
+═════════════════════════════════════════════════════ --}}
+@if($news->count() || $events->count())
+<section class="py-5 py-lg-6" style="background:var(--light);">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5" data-aos="fade-up">
+            <div>
+                <span class="section-label">Stay Updated</span>
+                <h2 class="section-title mt-2">News &amp; <span class="highlight">Events</span></h2>
+                <div class="title-divider mt-3"></div>
+            </div>
+            <a href="{{ route('news.index') }}" class="btn-outline-primary-c">View All</a>
+        </div>
         <div class="row g-4">
-            @foreach($courses as $course)
-                <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                    <div class="course-card card h-100">
-                        <div class="card-header">
-                            <i class="fas fa-graduation-cap fa-2x mb-2"></i>
-                            <h5 class="mb-0">{{ $course->name }}</h5>
-                            @if($course->short_name) <small class="opacity-75">{{ $course->short_name }}</small> @endif
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled mb-3">
-                                <li><i class="fas fa-clock text-gold me-2"></i><strong>Duration:</strong> {{ $course->duration }}</li>
-                                @if($course->intake) <li><i class="fas fa-users text-gold me-2"></i><strong>Intake:</strong> {{ $course->intake }} seats</li> @endif
-                                @if($course->fees) <li><i class="fas fa-rupee-sign text-gold me-2"></i><strong>Fees:</strong> {{ $course->fees }}</li> @endif
-                                @if($course->medium) <li><i class="fas fa-language text-gold me-2"></i><strong>Medium:</strong> {{ $course->medium }}</li> @endif
-                            </ul>
-                            @if($course->description)
-                                <p class="text-muted" style="font-size:.9rem;">{{ Str::limit($course->description, 100) }}</p>
+            @foreach($news->merge($events)->sortByDesc('published_at')->take(3) as $i => $item)
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
+                    <div class="news-card card">
+                        <div class="card-img-wrap">
+                            @if($item->image)
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
+                            @else
+                                <div class="img-placeholder d-flex align-items-center justify-content-center"
+                                     style="background:linear-gradient(135deg,var(--primary),var(--dark))">
+                                    <i class="fas fa-{{ $item->type === 'event' ? 'calendar-alt' : 'newspaper' }} fa-3x text-white" style="opacity:.3"></i>
+                                </div>
                             @endif
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('courses.show', $course->slug) }}" class="btn btn-outline-danger btn-sm flex-fill">Learn More</a>
-                                <a href="{{ route('admissions.index') }}" class="btn btn-sm flex-fill" style="background:var(--secondary);color:#fff">Apply Now</a>
-                            </div>
+                        <div class="card-body p-4">
+                            <span class="news-badge {{ $item->type === 'event' ? 'news-badge-event' : 'news-badge-news' }}">
+                                {{ ucfirst($item->type) }}
+                            </span>
+                            <h6 style="font-size:.95rem;line-height:1.5;color:#1a1a1a;margin-bottom:8px;">{{ Str::limit($item->title, 65) }}</h6>
+                            <p style="font-size:.84rem;color:#888;line-height:1.7;margin:0;">{{ Str::limit($item->excerpt ?? strip_tags($item->content), 105) }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent p-4 pt-0">
+                            <a href="{{ route('news.show', $item->slug) }}" class="btn-outline-primary-c" style="font-size:.82rem;padding:8px 18px;display:inline-block;">
+                                Read More <i class="fas fa-arrow-right ms-1" style="font-size:10px"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -240,127 +848,79 @@
 </section>
 @endif
 
-{{-- Faculty Highlights --}}
-@if($faculty->count())
-<section class="py-5">
-    <div class="container">
-        <h2 class="section-title text-center text-maroon">Our Faculty</h2>
-        <p class="text-center text-muted mb-4">Experienced legal educators shaping tomorrow's lawyers</p>
-        <div class="row g-4">
-            @foreach($faculty as $member)
-                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in">
-                    <div class="faculty-card card p-3">
-                        @if($member->photo)
-                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" class="d-block">
-                        @else
-                            <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center text-white" style="width:110px;height:110px;background:var(--primary);font-size:2.5rem;font-weight:700;margin-top:20px;">
-                                {{ strtoupper(substr($member->name, 0, 1)) }}
-                            </div>
-                        @endif
-                        <div class="p-2">
-                            <h6 class="mb-0" style="font-size:.9rem;">{{ $member->name }}</h6>
-                            <small class="text-muted">{{ $member->designation }}</small>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-4">
-            <a href="{{ route('faculty.index') }}" class="btn btn-outline-danger">View All Faculty</a>
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- News & Events --}}
-@if($news->count() || $events->count())
-<section class="py-5" style="background:#f8f9fa">
-    <div class="container">
-        <h2 class="section-title text-center text-maroon">News & Events</h2>
-        <div class="row g-4">
-            @foreach($news->merge($events)->sortByDesc('published_at')->take(3) as $item)
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="card h-100 border-0 shadow-sm">
-                        @if($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" style="height:200px;object-fit:cover" alt="{{ $item->title }}">
-                        @else
-                            <div class="card-img-top d-flex align-items-center justify-content-center" style="height:200px;background:linear-gradient(135deg,var(--primary),var(--dark))">
-                                <i class="fas fa-{{ $item->type === 'event' ? 'calendar-alt' : 'newspaper' }} fa-3x text-white opacity-50"></i>
-                            </div>
-                        @endif
-                        <div class="card-body">
-                            <span class="badge mb-2 {{ $item->type === 'event' ? 'bg-warning text-dark' : 'bg-danger' }}">{{ ucfirst($item->type) }}</span>
-                            <h6>{{ Str::limit($item->title, 60) }}</h6>
-                            <p class="text-muted" style="font-size:.85rem;">{{ Str::limit($item->excerpt ?? strip_tags($item->content), 100) }}</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="{{ route('news.show', $item->slug) }}" class="btn btn-sm btn-outline-danger">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-4">
-            <a href="{{ route('news.index') }}" class="btn btn-outline-danger">View All News & Events</a>
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- Gallery Preview --}}
+{{-- ══════════════════════════════════════════════════
+     GALLERY
+═════════════════════════════════════════════════════ --}}
 @if($galleries->count())
-<section class="py-5">
+<section class="py-5 py-lg-6" style="background:#fff;">
     <div class="container">
-        <h2 class="section-title text-center text-maroon">Photo Gallery</h2>
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5" data-aos="fade-up">
+            <div>
+                <span class="section-label">Campus Life</span>
+                <h2 class="section-title mt-2">Photo <span class="highlight">Gallery</span></h2>
+                <div class="title-divider mt-3"></div>
+            </div>
+            <a href="{{ route('gallery.index') }}" class="btn-outline-primary-c">View All Photos</a>
+        </div>
         <div class="row g-3">
-            @foreach($galleries->take(6) as $album)
-                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in">
-                    <a href="{{ route('gallery.show', $album->slug) }}" class="d-block position-relative rounded overflow-hidden" style="height:150px;">
+            @foreach($galleries->take(6) as $i => $album)
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="{{ $i * 60 }}">
+                    <a href="{{ route('gallery.show', $album->slug) }}" class="gallery-thumb">
                         @if($album->cover_image)
-                            <img src="{{ asset('storage/' . $album->cover_image) }}" class="w-100 h-100" style="object-fit:cover;" alt="{{ $album->title }}">
+                            <img src="{{ asset('storage/' . $album->cover_image) }}" alt="{{ $album->title }}">
                         @else
-                            <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background:var(--primary)">
-                                <i class="fas fa-images fa-2x text-white"></i>
+                            <div style="width:100%;height:100%;background:linear-gradient(135deg,var(--primary),var(--dark));display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-images fa-2x text-white" style="opacity:.4"></i>
                             </div>
                         @endif
-                        <div class="position-absolute bottom-0 start-0 end-0 p-2" style="background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:.8rem;">
-                            {{ Str::limit($album->title, 25) }}
+                        <div class="gallery-overlay">
+                            <span class="gallery-title">{{ Str::limit($album->title, 28) }}</span>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-        <div class="text-center mt-4">
-            <a href="{{ route('gallery.index') }}" class="btn btn-outline-danger">View Full Gallery</a>
-        </div>
     </div>
 </section>
 @endif
 
-{{-- Testimonials --}}
+{{-- ══════════════════════════════════════════════════
+     TESTIMONIALS
+═════════════════════════════════════════════════════ --}}
 @if($testimonials->count())
-<section class="py-5" style="background:var(--primary)">
+<section class="py-5 py-lg-6" style="background:linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 50%, var(--accent) 100%);">
     <div class="container">
-        <h2 class="section-title text-center text-white">What Our Students Say</h2>
-        <div class="row g-4 mt-2">
-            @foreach($testimonials as $t)
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="card h-100 border-0 p-4" style="background:rgba(255,255,255,.08);">
-                        <div class="d-flex gap-1 mb-3" style="color:var(--secondary)">
-                            @for($i = 1; $i <= 5; $i++)
-                                <i class="fas fa-star{{ $i > $t->rating ? '-o' : '' }}"></i>
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span style="display:inline-block;background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px;">Student Stories</span>
+            <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:#fff;margin:0;">What Our <span style="color:var(--secondary-light)">Students Say</span></h2>
+        </div>
+        <div class="row g-4">
+            @foreach($testimonials as $i => $t)
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
+                    <div class="testimonial-card">
+                        <div class="star-rating mb-3">
+                            @for($s = 1; $s <= 5; $s++)
+                                <i class="fas fa-star{{ $s > $t->rating ? '-o' : '' }}"></i>
                             @endfor
                         </div>
-                        <p class="text-white fst-italic">"{{ $t->content }}"</p>
-                        <div class="d-flex align-items-center gap-3 mt-3">
+                        <p style="color:rgba(255,255,255,.88);font-size:.9rem;line-height:1.8;font-style:italic;margin-bottom:20px;">
+                            "{{ $t->content }}"
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
                             @if($t->photo)
-                                <img src="{{ asset('storage/' . $t->photo) }}" style="width:45px;height:45px;border-radius:50%;object-fit:cover;" alt="{{ $t->name }}">
+                                <img src="{{ asset('storage/' . $t->photo) }}"
+                                     style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,151,58,.4);"
+                                     alt="{{ $t->name }}">
                             @else
-                                <div style="width:45px;height:45px;border-radius:50%;background:var(--secondary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">{{ strtoupper(substr($t->name,0,1)) }}</div>
+                                <div style="width:42px;height:42px;border-radius:50%;background:rgba(200,151,58,.25);display:flex;align-items:center;justify-content:center;color:var(--secondary-light);font-weight:700;font-family:'Fraunces',serif;font-size:1.1rem;flex-shrink:0;">
+                                    {{ strtoupper(substr($t->name,0,1)) }}
+                                </div>
                             @endif
                             <div>
-                                <strong class="text-white">{{ $t->name }}</strong><br>
-                                @if($t->course) <small style="color:var(--secondary)">{{ $t->course }}</small> @endif
+                                <strong style="color:#fff;font-size:.9rem;display:block;">{{ $t->name }}</strong>
+                                @if($t->course)
+                                    <small style="color:var(--secondary-light);font-size:.78rem;">{{ $t->course }}</small>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -371,14 +931,71 @@
 </section>
 @endif
 
-{{-- Admission CTA --}}
-<section class="py-5" style="background:linear-gradient(135deg,var(--dark) 0%,#2d1b00 100%)">
-    <div class="container text-center text-white">
-        <h2 style="color:var(--secondary)">Start Your Legal Career Journey Today</h2>
-        <p class="lead mt-2 mb-4">Admissions open for {{ date('Y') }}-{{ date('Y')+1 }}. Limited seats available.</p>
-        <a href="{{ route('admissions.index') }}" class="btn btn-lg me-3" style="background:var(--secondary);color:#fff">Apply for Admission</a>
-        <a href="{{ route('contact') }}" class="btn btn-lg btn-outline-light">Contact Us</a>
+{{-- ══════════════════════════════════════════════════
+     ADMISSION CTA
+═════════════════════════════════════════════════════ --}}
+<section class="cta-section py-5 py-lg-6">
+    <div class="container text-center" style="position:relative;z-index:1;" data-aos="fade-up">
+        <span style="display:inline-block;background:rgba(200,151,58,.2);color:var(--secondary-light);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;">Admissions {{ date('Y') }}-{{ date('Y')+1 }}</span>
+        <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px;">
+            Begin Your <span style="color:var(--secondary-light)">Legal Career</span> Journey Today
+        </h2>
+        <p style="color:rgba(255,255,255,.7);font-size:1rem;max-width:520px;margin:0 auto 36px;line-height:1.75;">
+            Limited seats available for {{ date('Y') }}-{{ date('Y')+1 }} academic year.
+            Take the first step towards a rewarding career in law.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="{{ route('admissions.index') }}" class="hero-cta-primary" style="padding:14px 32px;font-size:.95rem;">
+                <i class="fas fa-graduation-cap"></i> Apply for Admission
+            </a>
+            <a href="{{ route('contact') }}" class="hero-cta-secondary" style="padding:12px 30px;font-size:.95rem;">
+                <i class="fas fa-phone-alt"></i> Contact Us
+            </a>
+        </div>
+        <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+            <span style="color:rgba(255,255,255,.45);font-size:.8rem;display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-check-circle" style="color:var(--secondary-light)"></i> No Donation
+            </span>
+            <span style="color:rgba(255,255,255,.45);font-size:.8rem;display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-check-circle" style="color:var(--secondary-light)"></i> Merit Based Admission
+            </span>
+            <span style="color:rgba(255,255,255,.45);font-size:.8rem;display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-check-circle" style="color:var(--secondary-light)"></i> BCI Approved Degree
+            </span>
+        </div>
     </div>
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+// Animated counters
+function animateCounter(el) {
+    const target = parseInt(el.dataset.target) || 0;
+    if (target === 0) { el.textContent = '0'; return; }
+    const duration = 1800;
+    const step = Math.ceil(target / (duration / 16));
+    let current = 0;
+    const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+    }, 16);
+}
+
+// Trigger counters when stats bar enters viewport
+const counters = document.querySelectorAll('.counter-num');
+if (counters.length) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.done) {
+                entry.target.dataset.done = '1';
+                animateCounter(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
+}
+</script>
+@endpush
