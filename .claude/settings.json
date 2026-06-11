@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(awk 'NR>=170 && NR<=190 {printf \"%d\\\\t%s\\\\n\", NR, $0}' /Users/apple/Documents/law-college/resources/views/front/home.blade.php)",
-      "Bash(grep -n 'style=\"background:{{ $item->type' /Users/apple/Documents/law-college/resources/views/front/home.blade.php)"
+      "Bash(grep -n 'style=\"background:{{ $item->type' /Users/apple/Documents/law-college/resources/views/front/home.blade.php)",
+      "Bash(find /var/folders -name \"*.png\" -o -name \"*.jpg\" 2>/dev/null | grep -v \".git\" | head -20)",
+      "Read(//private/var/folders/**)",
+      "Bash(ls ~/Desktop/*.png ~/Desktop/*.jpg ~/Downloads/*.png ~/Downloads/*.jpg 2>/dev/null | head -10)",
+      "Read(//Users/apple/Desktop/**)",
+      "Bash(ls ~/Desktop/ | head -20 && ls ~/Downloads/ | head -20)",
+      "Read(//Users/apple/Downloads/**)"
     ]
   }
 }

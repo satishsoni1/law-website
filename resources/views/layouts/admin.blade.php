@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        :root { --primary: #7B1C1C; --secondary: #C8973A; --sidebar-width: 260px; }
+        :root { --primary: #162450; --secondary: #C8973A; --sidebar-width: 260px; }
         body { background: #f0f2f5; font-family: 'Inter', sans-serif; }
         .sidebar { width: var(--sidebar-width); background: #1a1a2e; min-height: 100vh; position: fixed; top: 0; left: 0; z-index: 1000; transition: .3s; overflow-y: auto; }
         .sidebar-brand { background: var(--primary); padding: 18px 20px; }
@@ -42,7 +42,10 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <h6><i class="fas fa-balance-scale me-2"></i>KTSPM Law College<br><small style="opacity:.7;font-size:.75rem">Admin Panel</small></h6>
+            <div class="d-flex align-items-center gap-2">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:44px;width:44px;object-fit:contain;border-radius:50%;background:#0a1228;padding:2px;">
+                <h6 style="margin:0;line-height:1.4;">KTSPM Law College<br><small style="opacity:.7;font-size:.75rem">Admin Panel</small></h6>
+            </div>
         </div>
 
         <div class="pt-2">

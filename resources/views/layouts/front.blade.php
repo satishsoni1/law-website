@@ -40,13 +40,13 @@
 
     <style>
         :root {
-            --primary: #8B1A1A;
-            --primary-light: #A52626;
-            --primary-dark: #600f0f;
+            --primary: #162450;
+            --primary-light: #1e3368;
+            --primary-dark: #0a1228;
             --secondary: #C8973A;
             --secondary-light: #e0b057;
-            --accent: #1E3A5F;
-            --dark: #0F1729;
+            --accent: #8B1A1A;
+            --dark: #0a1020;
             --light: #FAFAF8;
             --gray: #6c757d;
             --body-bg: #ffffff;
@@ -162,7 +162,7 @@
             transition: var(--transition);
         }
         .dropdown-item:hover {
-            background: rgba(139,26,26,.07);
+            background: rgba(22,36,80,.07);
             color: var(--primary);
         }
         .dropdown-header {
@@ -224,7 +224,7 @@
         /* ── Section Titles ────────────────────────── */
         .section-label {
             display: inline-block;
-            background: rgba(139,26,26,.08);
+            background: rgba(22,36,80,.08);
             color: var(--primary);
             font-size: 11.5px;
             font-weight: 700;
@@ -403,7 +403,7 @@
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: #fff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139,26,26,.3);
+            box-shadow: 0 6px 20px rgba(22,36,80,.3);
         }
         .btn-secondary-c {
             background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
@@ -497,9 +497,9 @@
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
                 @php $logo = \App\Models\Setting::get('logo'); @endphp
                 @if($logo)
-                    <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
+                    <img src="{{ asset('storage/' . $logo) }}" alt="Logo" style="height:56px;width:auto;">
                 @else
-                    <div class="brand-logo-placeholder">K</div>
+                    <img src="{{ asset('images/logo.png') }}" alt="K.T.S.P.M's Law College Logo" style="height:60px;width:auto;">
                 @endif
                 <div class="college-name">
                     K.T.S.P.M's
@@ -572,7 +572,10 @@
                 <!-- Brand -->
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-brand mb-3">
-                        <h4>K.T.S.P.M's Law College</h4>
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:60px;width:60px;object-fit:contain;background:#162450;border-radius:50%;padding:4px;">
+                            <h4 class="mb-0">K.T.S.P.M's Law College</h4>
+                        </div>
                         <p style="font-size:.875rem;line-height:1.75;margin-top:10px;">
                             {{ \App\Models\Setting::get('about_short', 'Affiliated to University of Mumbai. Approved by Bar Council of India. Shaping the legal professionals of tomorrow.') }}
                         </p>

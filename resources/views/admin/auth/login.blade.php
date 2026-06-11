@@ -7,19 +7,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { background: linear-gradient(135deg, #1a1a2e 0%, #7B1C1C 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        body { background: linear-gradient(135deg, #0a1228 0%, #162450 60%, #1e3368 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
         .login-card { background: #fff; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.4); overflow: hidden; max-width: 420px; width: 100%; }
-        .login-header { background: linear-gradient(135deg, #7B1C1C, #4a0f0f); padding: 35px 30px; text-align: center; color: #fff; }
+        .login-header { background: linear-gradient(135deg, #162450, #0a1228); padding: 35px 30px; text-align: center; color: #fff; }
         .login-header h4 { font-family: Georgia, serif; font-size: 1.3rem; }
         .login-body { padding: 35px 30px; }
-        .btn-login { background: #7B1C1C; color: #fff; border: none; padding: 12px; font-size: 1rem; border-radius: 8px; }
-        .btn-login:hover { background: #5a1414; color: #fff; }
+        .btn-login { background: #162450; color: #fff; border: none; padding: 12px; font-size: 1rem; border-radius: 8px; }
+        .btn-login:hover { background: #0a1228; color: #fff; }
     </style>
 </head>
 <body>
     <div class="login-card">
         <div class="login-header">
-            <div class="mb-3" style="font-size:3rem;"><i class="fas fa-balance-scale" style="color:#C8973A"></i></div>
+            <div class="mb-3">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:80px;width:80px;object-fit:contain;background:#0a1228;border-radius:50%;padding:5px;">
+            </div>
             <h4>K.T.S.P.M's Law College</h4>
             <small class="opacity-75">Admin Panel Login</small>
         </div>
