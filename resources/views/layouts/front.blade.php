@@ -461,10 +461,235 @@
             .main-nav .nav-link-item::after { display: none; }
             .btn-apply-nav { margin: 5px 0 10px; }
         }
+
+        /* ══════════════════════════════════════════════
+           Grand Page Loader
+        ══════════════════════════════════════════════ */
+        #pageLoader {
+            position: fixed; inset: 0; z-index: 99999;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            overflow: hidden;
+            transition: opacity .65s ease, transform .65s ease;
+        }
+        #pageLoader.loader-exit {
+            opacity: 0;
+            transform: scale(1.06);
+            pointer-events: none;
+        }
+
+        .ldr-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 45%, rgba(22,36,80,.85) 0%, #0a1020 70%),
+                        linear-gradient(160deg, #0a1228 0%, #162450 55%, #0a1020 100%);
+        }
+        /* gold dust particles */
+        .ldr-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--secondary);
+            opacity: 0;
+            animation: particleDrift var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+        }
+        @keyframes particleDrift {
+            0%   { transform: translateY(0) scale(1); opacity: 0; }
+            20%  { opacity: .6; }
+            80%  { opacity: .25; }
+            100% { transform: translateY(-140px) scale(.3); opacity: 0; }
+        }
+
+        /* pulsing rings */
+        .ldr-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(200,151,58,.18);
+            animation: ringPulse var(--rd, 3s) ease-out var(--rdelay, 0s) infinite;
+        }
+        @keyframes ringPulse {
+            0%   { transform: scale(.55); opacity: 0; }
+            25%  { opacity: 1; }
+            100% { transform: scale(1.55); opacity: 0; }
+        }
+
+        /* logo */
+        .ldr-logo-wrap {
+            position: relative; z-index: 2;
+            animation: logoBounceIn .9s cubic-bezier(.175,.885,.32,1.275) .25s both;
+        }
+        .ldr-logo {
+            width: 148px; height: 148px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 32px rgba(200,151,58,.55))
+                    drop-shadow(0 0 80px rgba(200,151,58,.25));
+            display: block;
+        }
+        .ldr-logo-glow {
+            position: absolute; inset: -28px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200,151,58,.28) 0%, transparent 65%);
+            animation: glowBreath 2.2s ease-in-out infinite;
+        }
+        @keyframes logoBounceIn {
+            0%   { transform: scale(0) rotate(-200deg); opacity: 0; }
+            60%  { transform: scale(1.1) rotate(8deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes glowBreath {
+            0%,100% { transform: scale(1); opacity: .7; }
+            50%      { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* text block */
+        .ldr-text { position: relative; z-index: 2; text-align: center; margin-top: 22px; }
+        .ldr-name {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.35rem, 4vw, 1.9rem);
+            font-weight: 700; color: #fff;
+            letter-spacing: .03em; line-height: 1.2;
+            animation: riseIn .7s ease .95s both;
+        }
+        .ldr-location {
+            font-size: .78rem; font-weight: 600;
+            color: rgba(255,255,255,.45);
+            letter-spacing: .18em; text-transform: uppercase;
+            margin-top: 5px;
+            animation: riseIn .7s ease 1.15s both;
+        }
+        .ldr-motto {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-top: 16px;
+            animation: riseIn .7s ease 1.35s both;
+        }
+        .ldr-motto span { color: var(--secondary); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .ldr-motto .ldr-dot { color: rgba(200,151,58,.35); font-size: 1rem; }
+
+        /* progress bar */
+        .ldr-progress {
+            width: 180px; height: 2px;
+            background: rgba(255,255,255,.08);
+            border-radius: 2px; margin-top: 28px;
+            overflow: hidden; position: relative; z-index: 2;
+            animation: riseIn .5s ease 1.55s both;
+        }
+        .ldr-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light), var(--secondary));
+            background-size: 200%;
+            border-radius: 2px;
+            animation: progressFill 1.3s ease 1.6s both, shimmer 1.4s linear 1.6s;
+        }
+        @keyframes riseIn {
+            from { transform: translateY(18px); opacity: 0; }
+            to   { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes progressFill {
+            from { width: 0; }
+            to   { width: 100%; }
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* divider lines */
+        .ldr-lines {
+            position: relative; z-index: 2;
+            display: flex; gap: 6px; align-items: center;
+            margin-top: 18px;
+        }
+        .ldr-lines .ldr-line {
+            height: 1px; background: linear-gradient(90deg, transparent, rgba(200,151,58,.45), transparent);
+            animation: lineGrow .8s ease 1.35s both;
+        }
+        @keyframes lineGrow {
+            from { width: 0; opacity: 0; }
+            to   { opacity: 1; }
+        }
     </style>
     @stack('styles')
 </head>
 <body>
+
+    <!-- ══ Grand Page Loader ════════════════════════ -->
+    <div id="pageLoader">
+        <div class="ldr-bg"></div>
+
+        {{-- Animated rings --}}
+        <div class="ldr-ring" style="width:240px;height:240px;--rd:2.8s;--rdelay:0s;"></div>
+        <div class="ldr-ring" style="width:340px;height:340px;--rd:2.8s;--rdelay:.5s;border-color:rgba(200,151,58,.11);"></div>
+        <div class="ldr-ring" style="width:460px;height:460px;--rd:2.8s;--rdelay:1s;border-color:rgba(200,151,58,.06);"></div>
+        <div class="ldr-ring" style="width:600px;height:600px;--rd:2.8s;--rdelay:1.5s;border-color:rgba(200,151,58,.03);"></div>
+
+        {{-- Logo --}}
+        <div class="ldr-logo-wrap">
+            <div class="ldr-logo-glow"></div>
+            <img src="{{ asset('images/logo.png') }}" alt="K.T.S.P.M's Law College" class="ldr-logo">
+        </div>
+
+        {{-- Horizontal decorative lines --}}
+        <div class="ldr-lines">
+            <div class="ldr-line" style="width:60px;"></div>
+            <div style="color:rgba(200,151,58,.4);font-size:.6rem;letter-spacing:.2em;animation:riseIn .5s ease 1.35s both;opacity:0;">EST. 2024</div>
+            <div class="ldr-line" style="width:60px;"></div>
+        </div>
+
+        {{-- Text --}}
+        <div class="ldr-text">
+            <div class="ldr-name">K.T.S.P.M's Law College</div>
+            <div class="ldr-location">Khopoli &nbsp;·&nbsp; Raigad</div>
+            <div class="ldr-motto">
+                <span>Justice</span>
+                <span class="ldr-dot">•</span>
+                <span>Knowledge</span>
+                <span class="ldr-dot">•</span>
+                <span>Integrity</span>
+            </div>
+        </div>
+
+        {{-- Progress bar --}}
+        <div class="ldr-progress">
+            <div class="ldr-progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+    // Grand loader — show once per session
+    (function () {
+        var loader = document.getElementById('pageLoader');
+        if (!loader) return;
+
+        // skip on repeat visits within the same session
+        // if (sessionStorage.getItem('ldrSeen')) {
+        //     loader.style.display = 'none';
+        //     return;
+        // }
+        sessionStorage.setItem('ldrSeen', '1');
+
+        // Generate gold dust particles
+        var count = 22;
+        for (var i = 0; i < count; i++) {
+            var p = document.createElement('div');
+            p.className = 'ldr-particle';
+            var size = Math.random() * 4 + 2;
+            p.style.cssText = [
+                'width:' + size + 'px',
+                'height:' + size + 'px',
+                'left:' + (Math.random() * 100) + '%',
+                'top:' + (60 + Math.random() * 30) + '%',
+                '--dur:' + (2.5 + Math.random() * 2) + 's',
+                '--delay:' + (Math.random() * 2.5) + 's',
+                'opacity:0'
+            ].join(';');
+            loader.appendChild(p);
+        }
+
+        // Hide loader after 3s
+        setTimeout(function () {
+            loader.classList.add('loader-exit');
+            setTimeout(function () { loader.style.display = 'none'; }, 700);
+        }, 3000);
+    })();
+    </script>
 
     <!-- Top Bar -->
     <div class="topbar d-none d-md-block">
@@ -540,7 +765,15 @@
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('notices.*') ? 'active' : '' }}" href="{{ route('notices.index') }}">Notices</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('news.*') ? 'active' : '' }}" href="{{ route('news.index') }}">News & Events</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('gallery.*') ? 'active' : '' }}" href="{{ route('gallery.index') }}">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('downloads.*') ? 'active' : '' }}" href="{{ route('downloads.index') }}">Downloads</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-item dropdown-toggle {{ request()->routeIs('downloads.*','legal-aid','admissions.*') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">Academics</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admissions.index') }}"><i class="fas fa-graduation-cap me-2 text-primary-c"></i>Admissions</a></li>
+                            <li><a class="dropdown-item" href="{{ route('downloads.index') }}"><i class="fas fa-download me-2 text-primary-c"></i>Syllabus &amp; Downloads</a></li>
+                            <li><hr class="dropdown-divider my-1"></li>
+                            <li><a class="dropdown-item" href="{{ route('legal-aid') }}"><i class="fas fa-hands-helping me-2 text-secondary-c"></i>Legal Aid Committee</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                     <li class="nav-item">
                         <a class="nav-link btn-apply-nav" href="{{ route('admissions.index') }}">
@@ -612,6 +845,7 @@
                         <li><a href="{{ route('downloads.index') }}">Downloads</a></li>
                         <li><a href="{{ route('anti-ragging') }}">Anti-Ragging</a></li>
                         <li><a href="{{ route('rti') }}">RTI</a></li>
+                        <li><a href="{{ route('legal-aid') }}">Legal Aid Committee</a></li>
                         <li><a href="{{ route('affiliation') }}">Affiliation</a></li>
                         <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                         <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>

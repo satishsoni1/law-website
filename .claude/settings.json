@@ -8,7 +8,8 @@
       "Bash(ls ~/Desktop/*.png ~/Desktop/*.jpg ~/Downloads/*.png ~/Downloads/*.jpg 2>/dev/null | head -10)",
       "Read(//Users/apple/Desktop/**)",
       "Bash(ls ~/Desktop/ | head -20 && ls ~/Downloads/ | head -20)",
-      "Read(//Users/apple/Downloads/**)"
+      "Read(//Users/apple/Downloads/**)",
+      "Bash(php artisan *)"
     ]
   }
 }

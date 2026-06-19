@@ -29,6 +29,11 @@ class PageController extends Controller
         return view('front.rti');
     }
 
+    public function legalAid()
+    {
+        return view('front.legal-aid');
+    }
+
     public function privacy()
     {
         return view('front.privacy');

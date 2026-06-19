@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Download;
 use App\Models\Faculty;
+use App\Models\Gallery;
 use App\Models\Notice;
 use App\Models\Setting;
 use App\Models\User;
@@ -53,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'duration'    => '3 Years (6 Semesters)',
                 'intake'      => 120,
                 'fees'        => '₹15,000 per year',
-                'eligibility' => 'Any graduate (BA/B.Com/B.Sc) with minimum 45% marks (40% for reserved categories) from a recognized university.',
+                'eligibility' => 'Any graduate with minimum 45% marks (Open), 42% (OBC/NT), 40% (SC) from a recognized university. Admission through CET conducted by State Common Entrance Test Cell, Maharashtra.',
                 'medium'      => 'Marathi & English',
                 'affiliation' => 'University of Mumbai',
                 'is_active'   => true,
@@ -62,15 +64,33 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Sample Faculty
+        // Faculty — actual college faculty
         $facultyList = [
-            ['name' => 'Dr. Rajesh Kumar Sharma', 'designation' => 'Principal', 'qualification' => 'LL.M., Ph.D.', 'specialization' => 'Constitutional Law', 'category' => 'permanent', 'experience' => 20],
-            ['name' => 'Prof. Sunita Patil', 'designation' => 'Associate Professor', 'qualification' => 'LL.M.', 'specialization' => 'Criminal Law', 'category' => 'permanent', 'experience' => 15],
-            ['name' => 'Adv. Vijay Deshmukh', 'designation' => 'Visiting Faculty', 'qualification' => 'LL.B.', 'specialization' => 'Civil Practice', 'category' => 'visiting', 'experience' => 10],
+            [
+                'name'           => 'Adv. Varsha Ghare',
+                'designation'    => 'I/C Principal',
+                'qualification'  => 'B.com, CIA, LLM',
+                'specialization' => 'Law',
+                'category'       => 'permanent',
+                'experience'     => null,
+                'order'          => 1,
+            ],
+            [
+                'name'           => 'Meghana Polekar',
+                'designation'    => 'Assistant Professor',
+                'qualification'  => 'LL.M.',
+                'specialization' => 'Law',
+                'category'       => 'permanent',
+                'experience'     => null,
+                'order'          => 2,
+            ],
         ];
 
-        foreach ($facultyList as $i => $f) {
-            Faculty::firstOrCreate(['name' => $f['name']], array_merge($f, ['order' => $i + 1, 'is_active' => true]));
+        foreach ($facultyList as $f) {
+            Faculty::firstOrCreate(
+                ['name' => $f['name']],
+                array_merge($f, ['is_active' => true])
+            );
         }
 
         // Sample Notices
@@ -80,6 +100,49 @@ class DatabaseSeeder extends Seeder
             ['title' => 'Guest Lecture on Cyber Law', 'is_pinned' => false],
         ] as $n) {
             Notice::firstOrCreate(['title' => $n['title']], array_merge($n, ['publish_date' => now(), 'is_active' => true]));
+        }
+
+        // Syllabus download
+        Download::firstOrCreate(
+            ['title' => 'Syllabus of 3 Years Law Course (LL.B.)'],
+            [
+                'description'    => 'Complete syllabus of the Three-Year LL.B. programme affiliated to University of Mumbai.',
+                'file'           => 'syllabus of 3 years law course.docx',
+                'file_type'      => 'docx',
+                'category'       => 'syllabus',
+                'is_active'      => true,
+                'download_count' => 0,
+                'order'          => 1,
+            ]
+        );
+
+        // Gallery — college events
+        $events = [
+            [
+                'title'       => 'RTI Seminar',
+                'slug'        => 'rti-seminar',
+                'description' => 'Seminar on Right to Information (RTI) organised by K.T.S.P.M\'s Law College. Legal awareness was created among students and community members about RTI provisions.',
+                'order'       => 1,
+            ],
+            [
+                'title'       => 'Essay Writing Competition',
+                'slug'        => 'essay-writing-competition',
+                'description' => 'Essay Writing Competition organised by K.T.S.P.M\'s Law College to encourage students to express their views on legal and social issues.',
+                'order'       => 2,
+            ],
+            [
+                'title'       => 'Inauguration Function – 14 October 2024',
+                'slug'        => 'inauguration-function-2024',
+                'description' => 'Inauguration function held on 14th October 2024 at K.T.S.P.M\'s Law College, Khopoli.',
+                'order'       => 3,
+            ],
+        ];
+
+        foreach ($events as $event) {
+            Gallery::firstOrCreate(
+                ['slug' => $event['slug']],
+                array_merge($event, ['type' => 'photo', 'is_active' => true])
+            );
         }
     }
 }

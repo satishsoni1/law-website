@@ -23,6 +23,7 @@ Route::get('/infrastructure', [PageController::class, 'infrastructure'])->name('
 Route::get('/affiliation', [PageController::class, 'affiliation'])->name('affiliation');
 Route::get('/anti-ragging', [PageController::class, 'antiRagging'])->name('anti-ragging');
 Route::get('/rti', [PageController::class, 'rti'])->name('rti');
+Route::get('/legal-aid', [PageController::class, 'legalAid'])->name('legal-aid');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/terms-conditions', [PageController::class, 'terms'])->name('terms');
 

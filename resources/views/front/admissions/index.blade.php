@@ -183,18 +183,57 @@
                 </form>
             </div>
             <div class="col-lg-4">
+
+                {{-- Eligibility Criteria --}}
                 <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header text-white" style="background:var(--primary)">
+                        <h6 class="mb-0"><i class="fas fa-check-circle me-2"></i>Eligibility Criteria</h6>
+                    </div>
                     <div class="card-body p-4">
-                        <h5 class="text-maroon mb-3">Admission Process</h5>
-                        <ol class="ps-3">
-                            <li class="mb-2">Fill the online application form</li>
-                            <li class="mb-2">Upload required documents</li>
-                            <li class="mb-2">Wait for review notification</li>
-                            <li class="mb-2">Pay fees upon approval</li>
-                            <li>Complete admission formalities</li>
+                        <ol class="ps-3 mb-0" style="font-size:.9rem;">
+                            <li class="mb-3">The basic requirement for admission to the Three-Year Law Course is that the candidate has to appear in the <strong>Common Entrance Test (CET)</strong> Examination.</li>
+                            <li class="mb-3">CET examination is conducted by <strong>State Common Entrance Test Cell, Government of Maharashtra</strong> on the specified dates. Students are required to follow instructions published on the official CET Cell website.</li>
+                            <li class="mb-0">A candidate who has successfully completed the <strong>Bachelor's Degree</strong> from Mumbai University or equivalent, with:
+                                <ul class="mt-2" style="list-style:disc;padding-left:1.2rem;">
+                                    <li class="mb-1"><strong>45%</strong> marks — Open Category</li>
+                                    <li class="mb-1"><strong>42%</strong> marks — OBC / NT Category</li>
+                                    <li><strong>40%</strong> marks — SC Category</li>
+                                </ul>
+                                is eligible for admission to First Year LL.B.
+                            </li>
                         </ol>
                     </div>
                 </div>
+
+                {{-- Admission Procedure --}}
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header text-white" style="background:var(--primary)">
+                        <h6 class="mb-0"><i class="fas fa-list-ol me-2"></i>Admission Procedure</h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <ol class="ps-3 mb-0" style="font-size:.88rem;line-height:1.75;">
+                            <li class="mb-3">Admission procedure starts after declaration of CET results by the State Common Entrance Test Cell.</li>
+                            <li class="mb-3">CET Cell publishes a <strong>merit list</strong> based on CET score and details submitted in the online form. Students must give college options in preferential order.</li>
+                            <li class="mb-3">CET Cell makes <strong>college allotment</strong>; students must take admission within the prescribed time.</li>
+                            <li class="mb-3">If the chosen college is not allotted in any CAP Round, admission can be secured in the <strong>Institutional Round</strong> (vacant seats after CAP + Institution quota), subject to seat availability and merit.</li>
+                            <li class="mb-3">Documents uploaded at online form stage are <strong>verified at college admission</strong>. Students must submit true and authenticated documents. The college has the right to reject incorrect documents.</li>
+                            <li class="mb-0">Confirmation of admission is subject to <strong>ARA (Admission Regulatory Authority)</strong> approval. If documents are rejected by ARA, the college will not be liable for cancellation.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                {{-- Syllabus Download --}}
+                <div class="card border-0 shadow-sm mb-4" style="border-left:4px solid var(--secondary) !important;">
+                    <div class="card-body p-4">
+                        <h6 class="text-maroon mb-2"><i class="fas fa-file-word me-2"></i>Course Syllabus</h6>
+                        <p class="text-muted mb-3" style="font-size:.875rem;">Download the complete LL.B. 3-Year programme syllabus.</p>
+                        <a href="{{ route('downloads.index') }}" class="btn btn-sm w-100" style="background:var(--primary);color:#fff;">
+                            <i class="fas fa-download me-2"></i>Download Syllabus
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Help --}}
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-4">
                         <h5 class="text-maroon mb-3">Need Help?</h5>

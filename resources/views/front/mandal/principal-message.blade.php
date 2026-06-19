@@ -24,11 +24,12 @@
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
                     <div class="py-5 px-4" style="background:linear-gradient(135deg,#1a5c35 0%,#2d6a4f 100%);">
-                        <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-                            <i class="fas fa-balance-scale fa-4x" style="color:var(--secondary);"></i>
+                        <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;">
+                            <i class="fas fa-user-tie fa-4x" style="color:var(--secondary);"></i>
                         </div>
-                        <h4 class="text-white mb-1">Principal</h4>
-                        <span class="badge px-3 py-2 mt-1" style="background:var(--secondary);font-size:.9rem;">Principal</span>
+                        <h4 class="text-white mb-1">Adv. Varsha Ghare</h4>
+                        <p class="mb-1" style="color:rgba(255,255,255,.8);font-size:.88rem;">B.com, CIA, LLM</p>
+                        <span class="badge px-3 py-2 mt-1" style="background:var(--secondary);font-size:.85rem;">I/C Principal</span>
                         <p class="mt-2 mb-0" style="color:rgba(255,255,255,.75);font-size:.85rem;">K.T.S.P.M's Law College, Khopoli</p>
                     </div>
                     <div class="card-body p-4">
@@ -76,9 +77,10 @@
 
                     <p style="margin-top:2rem;">With warm regards and best wishes for your future,</p>
                     <div class="mt-3 p-4 rounded-3 d-inline-block" style="background:linear-gradient(135deg,#1a5c35,#2d6a4f);color:#fff;min-width:300px;">
-                        <h5 class="mb-1">Principal</h5>
-                        <p class="mb-0 opacity-85">K.T.S.P.M's Law College, Khopoli</p>
-                        <small style="color:var(--secondary)">Affiliated to University of Mumbai</small>
+                        <h5 class="mb-1">Adv. Varsha Ghare</h5>
+                        <p class="mb-1 opacity-85" style="font-size:.9rem;">B.com, CIA, LLM</p>
+                        <p class="mb-0 opacity-85">I/C Principal</p>
+                        <small style="color:var(--secondary)">K.T.S.P.M's Law College, Khopoli</small>
                     </div>
                 </div>
 

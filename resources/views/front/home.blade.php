@@ -34,7 +34,7 @@
     .hero-section::after {
         content: '';
         position: absolute; inset: 0; z-index: 1;
-        background: linear-gradient(105deg, rgba(139,26,26,.72) 0%, rgba(15,23,41,.55) 55%, rgba(30,58,95,.45) 100%);
+        background: linear-gradient(105deg, rgba(10,18,40,.82) 0%, rgba(22,36,80,.55) 55%, rgba(10,18,40,.6) 100%);
     }
     .hero-content {
         position: relative; z-index: 2;
@@ -160,7 +160,7 @@
         transition: all .3s ease;
     }
     .stat-item:last-child { border-right: none; }
-    .stat-item:hover { background: rgba(139,26,26,.03); }
+    .stat-item:hover { background: rgba(22,36,80,.04); }
     .stat-number {
         font-family: 'Fraunces', serif;
         font-size: 2.2rem;
@@ -181,7 +181,7 @@
     .stat-icon {
         width: 40px; height: 40px;
         border-radius: 10px;
-        background: rgba(139,26,26,.08);
+        background: rgba(22,36,80,.09);
         display: inline-flex; align-items: center; justify-content: center;
         margin-bottom: 10px;
         font-size: 15px;
@@ -341,7 +341,7 @@
 
     /* ── CTA Section ───────────────────────────────── */
     .cta-section {
-        background: linear-gradient(135deg, var(--dark) 0%, #1a0808 40%, var(--accent) 100%);
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
         position: relative; overflow: hidden;
     }
     .cta-section::before {
@@ -374,6 +374,166 @@
 
     /* ── Scrolling Counters ────────────────────────── */
     .counter-num { display: inline-block; }
+
+    /* ── Hero Right Panel ──────────────────────────── */
+    .hero-right-panel { position: relative; z-index: 2; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+
+    .hero-card {
+        background: rgba(255,255,255,.055);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 22px;
+        padding: 28px 26px 22px;
+        min-height: 360px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-card::before {
+        content: '';
+        position: absolute; top: -60px; right: -60px;
+        width: 180px; height: 180px;
+        border-radius: 50%;
+        background: rgba(200,151,58,.07);
+        pointer-events: none;
+    }
+
+    /* slide labels & titles */
+    .hc-badge {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        color: #fff;
+        font-size: .72rem; font-weight: 700;
+        letter-spacing: .1em; text-transform: uppercase;
+        padding: 5px 14px; border-radius: 20px;
+        width: fit-content; margin-bottom: 16px;
+    }
+    .hc-label {
+        font-size: .68rem; font-weight: 700;
+        letter-spacing: .13em; text-transform: uppercase;
+        color: var(--secondary-light);
+        margin-bottom: 8px;
+    }
+    .hc-title {
+        font-family: 'Fraunces', serif;
+        font-size: 1.25rem; font-weight: 700;
+        color: #fff; line-height: 1.3;
+        margin-bottom: 18px;
+    }
+
+    /* check list */
+    .hc-list { list-style: none; padding: 0; margin: 0 0 20px; flex: 1; }
+    .hc-list li {
+        display: flex; align-items: center; gap: 10px;
+        font-size: .84rem; color: rgba(255,255,255,.82);
+        padding: 7px 0;
+        border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .hc-list li:last-child { border-bottom: none; }
+    .hc-list li i { color: var(--secondary-light); font-size: 12px; flex-shrink: 0; }
+
+    /* course list items */
+    .hc-course {
+        display: flex; align-items: center; gap: 10px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        transition: all .25s ease;
+    }
+    .hc-course:hover { background: rgba(200,151,58,.12); border-color: rgba(200,151,58,.25); }
+    .hc-course .hc-course-icon {
+        width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+        background: rgba(200,151,58,.15);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 13px; color: var(--secondary-light);
+    }
+    .hc-course .hc-course-name {
+        font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.88); line-height: 1.3;
+    }
+    .hc-course .hc-course-dur {
+        font-size: .72rem; color: rgba(255,255,255,.45); margin-top: 2px;
+    }
+
+    /* stat grid */
+    .hc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+    .hc-stat-box {
+        background: rgba(255,255,255,.07);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 12px;
+        padding: 14px 12px;
+        text-align: center;
+    }
+    .hc-stat-num {
+        font-family: 'Fraunces', serif;
+        font-size: 1.6rem; font-weight: 700;
+        color: var(--secondary-light);
+        display: block; line-height: 1;
+    }
+    .hc-stat-lbl {
+        font-size: .72rem; color: rgba(255,255,255,.55);
+        font-weight: 600; letter-spacing: .04em;
+        margin-top: 5px; display: block;
+        text-transform: uppercase;
+    }
+
+    /* notice slide */
+    .hc-notice-item {
+        background: rgba(255,255,255,.06);
+        border-left: 3px solid var(--secondary);
+        border-radius: 0 10px 10px 0;
+        padding: 10px 14px;
+        margin-bottom: 8px;
+    }
+    .hc-notice-item p {
+        font-size: .82rem; color: rgba(255,255,255,.85);
+        line-height: 1.5; margin: 0;
+    }
+    .hc-notice-item small {
+        font-size: .72rem; color: rgba(255,255,255,.4);
+        display: block; margin-top: 4px;
+    }
+
+    /* bottom CTA button */
+    .hc-btn {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        color: #fff; font-weight: 700; font-size: .84rem;
+        padding: 11px 20px; border-radius: 12px;
+        text-decoration: none; margin-top: auto;
+        transition: all .3s ease;
+        letter-spacing: 0.01em;
+    }
+    .hc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,151,58,.4); color: #fff; }
+    .hc-btn-ghost {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        border: 1px solid rgba(255,255,255,.2);
+        color: rgba(255,255,255,.8); font-weight: 600; font-size: .82rem;
+        padding: 9px 18px; border-radius: 12px;
+        text-decoration: none; margin-top: auto;
+        transition: all .3s ease;
+        backdrop-filter: blur(4px);
+    }
+    .hc-btn-ghost:hover { border-color: rgba(200,151,58,.5); color: var(--secondary-light); }
+
+    /* carousel dots */
+    #heroRightSlider .carousel-indicators {
+        position: static; margin: 14px 0 0; justify-content: center;
+    }
+    #heroRightSlider .carousel-indicators [data-bs-target] {
+        width: 7px; height: 7px; border-radius: 50%;
+        border: none; background: rgba(255,255,255,.25);
+        transition: all .3s ease; margin: 0 3px;
+        flex-shrink: 0;
+    }
+    #heroRightSlider .carousel-indicators .active {
+        background: var(--secondary); width: 22px; border-radius: 4px;
+    }
 </style>
 @endpush
 
@@ -412,8 +572,10 @@
     {{-- Hero content --}}
     <div class="hero-content py-5">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 col-xl-7" data-aos="fade-right" data-aos-duration="900">
+            <div class="row align-items-center g-4">
+
+                {{-- Left: main headline --}}
+                <div class="col-lg-7 col-xl-6" data-aos="fade-right" data-aos-duration="900">
                     <div class="hero-eyebrow">
                         <i class="fas fa-balance-scale"></i>
                         Established &amp; Approved College of Law
@@ -438,9 +600,134 @@
                     <div class="hero-accred">
                         <span class="accred-chip"><i class="fas fa-university"></i> University of Mumbai</span>
                         <span class="accred-chip"><i class="fas fa-gavel"></i> Bar Council of India</span>
-                        <span class="accred-chip"><i class="fas fa-star"></i> Est. 2010</span>
+                        <span class="accred-chip"><i class="fas fa-star"></i> Est. 2024</span>
                     </div>
                 </div>
+
+                {{-- Right: info banner slider --}}
+                <div class="col-lg-5 col-xl-6 d-none d-lg-block hero-right-panel" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+                    <div id="heroRightSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+                        <div class="carousel-inner">
+
+                            {{-- Slide 1: Admissions --}}
+                            <div class="carousel-item active">
+                                <div class="hero-card">
+                                    <div class="hc-badge">
+                                        <i class="fas fa-circle" style="font-size:7px;animation:pulse 1.5s infinite;"></i>
+                                        Admissions Open {{ date('Y') }}–{{ date('Y')+1 }}
+                                    </div>
+                                    <div class="hc-title">Join India's Emerging<br>College of Law</div>
+                                    <ul class="hc-list">
+                                        <li><i class="fas fa-check-circle"></i> Bar Council of India Approved</li>
+                                        <li><i class="fas fa-check-circle"></i> University of Mumbai Affiliated</li>
+                                        <li><i class="fas fa-check-circle"></i> Experienced Legal Faculty</li>
+                                        <li><i class="fas fa-check-circle"></i> Moot Court &amp; Library Facility</li>
+                                        <li><i class="fas fa-check-circle"></i> Merit Based — No Donation</li>
+                                    </ul>
+                                    <a href="{{ route('admissions.index') }}" class="hc-btn">
+                                        <i class="fas fa-graduation-cap"></i> Apply for Admission
+                                    </a>
+                                </div>
+                            </div>
+
+                            {{-- Slide 2: Courses --}}
+                            <div class="carousel-item">
+                                <div class="hero-card">
+                                    <div class="hc-label"><i class="fas fa-book-open me-1"></i>Academic Programs</div>
+                                    <div class="hc-title">Courses We Offer</div>
+                                    <div style="flex:1;overflow:hidden;">
+                                        @forelse($courses->take(4) as $course)
+                                            <a href="{{ route('courses.show', $course->slug) }}" class="hc-course">
+                                                <div class="hc-course-icon"><i class="fas fa-graduation-cap"></i></div>
+                                                <div>
+                                                    <div class="hc-course-name">{{ $course->name }}</div>
+                                                    @if($course->duration)
+                                                        <div class="hc-course-dur"><i class="fas fa-clock me-1"></i>{{ $course->duration }}</div>
+                                                    @endif
+                                                </div>
+                                            </a>
+                                        @empty
+                                            <a href="{{ route('courses.index') }}" class="hc-course">
+                                                <div class="hc-course-icon"><i class="fas fa-graduation-cap"></i></div>
+                                                <div><div class="hc-course-name">3-Year LL.B Programme</div><div class="hc-course-dur"><i class="fas fa-clock me-1"></i>3 Years</div></div>
+                                            </a>
+                                            <a href="{{ route('courses.index') }}" class="hc-course">
+                                                <div class="hc-course-icon"><i class="fas fa-graduation-cap"></i></div>
+                                                <div><div class="hc-course-name">5-Year B.A. LL.B Programme</div><div class="hc-course-dur"><i class="fas fa-clock me-1"></i>5 Years</div></div>
+                                            </a>
+                                        @endforelse
+                                    </div>
+                                    <a href="{{ route('courses.index') }}" class="hc-btn-ghost mt-3">
+                                        View All Courses <i class="fas fa-arrow-right" style="font-size:11px"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {{-- Slide 3: Stats --}}
+                            <div class="carousel-item">
+                                <div class="hero-card">
+                                    <div class="hc-label"><i class="fas fa-chart-bar me-1"></i>College at a Glance</div>
+                                    <div class="hc-title">Our Achievements</div>
+                                    <div class="hc-stats" style="flex:1;">
+                                        <div class="hc-stat-box">
+                                            <span class="hc-stat-num">{{ \App\Models\Admission::where('status','approved')->count() ?: '100' }}+</span>
+                                            <span class="hc-stat-lbl">Students</span>
+                                        </div>
+                                        <div class="hc-stat-box">
+                                            <span class="hc-stat-num">{{ \App\Models\Faculty::active()->count() ?: '10' }}+</span>
+                                            <span class="hc-stat-lbl">Faculty</span>
+                                        </div>
+                                        <div class="hc-stat-box">
+                                            <span class="hc-stat-num">{{ \App\Models\Course::active()->count() ?: '2' }}</span>
+                                            <span class="hc-stat-lbl">Courses</span>
+                                        </div>
+                                        <div class="hc-stat-box">
+                                            <span class="hc-stat-num">2024</span>
+                                            <span class="hc-stat-lbl">Established</span>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('about') }}" class="hc-btn-ghost mt-3">
+                                        Know More About Us <i class="fas fa-arrow-right" style="font-size:11px"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {{-- Slide 4: Latest Notice --}}
+                            <div class="carousel-item">
+                                <div class="hero-card">
+                                    <div class="hc-label"><i class="fas fa-bullhorn me-1"></i>Notice Board</div>
+                                    <div class="hc-title">Latest Announcements</div>
+                                    <div style="flex:1;overflow:hidden;">
+                                        @forelse($notices->take(4) as $notice)
+                                            <div class="hc-notice-item">
+                                                <p>{{ Str::limit($notice->title, 68) }}</p>
+                                                <small><i class="fas fa-calendar-alt me-1"></i>{{ $notice->publish_date->format('d M Y') }}</small>
+                                            </div>
+                                        @empty
+                                            <div class="hc-notice-item">
+                                                <p>Admissions open for {{ date('Y') }}–{{ date('Y')+1 }} academic year.</p>
+                                                <small><i class="fas fa-calendar-alt me-1"></i>{{ date('d M Y') }}</small>
+                                            </div>
+                                        @endforelse
+                                    </div>
+                                    <a href="{{ route('notices.index') }}" class="hc-btn-ghost mt-3">
+                                        All Notices <i class="fas fa-arrow-right" style="font-size:11px"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {{-- Dots --}}
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#heroRightSlider" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#heroRightSlider" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#heroRightSlider" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#heroRightSlider" data-bs-slide-to="3"></button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -476,7 +763,7 @@
             <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="240">
                 <div class="stat-item">
                     <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <span class="stat-number counter-num" data-target="{{ date('Y') - 2010 }}">0</span>+
+                    <span class="stat-number counter-num" data-target="{{ date('Y') - 2024 }}">0</span>+
                     <span class="stat-label">Years of Excellence</span>
                 </div>
             </div>
