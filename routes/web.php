@@ -13,59 +13,64 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin;
 
-// ─── PUBLIC ROUTES ───────────────────────────────────────────────────────────
+// ─── COMING SOON (bypasses coming-soon middleware) ───────────────────────────
+Route::get('/coming-soon', fn () => view('front.coming-soon'))->name('coming-soon');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// ─── PUBLIC ROUTES (redirected to coming-soon when enabled) ──────────────────
+Route::middleware('coming-soon')->group(function () {
 
-// About & static pages
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/infrastructure', [PageController::class, 'infrastructure'])->name('infrastructure');
-Route::get('/affiliation', [PageController::class, 'affiliation'])->name('affiliation');
-Route::get('/anti-ragging', [PageController::class, 'antiRagging'])->name('anti-ragging');
-Route::get('/rti', [PageController::class, 'rti'])->name('rti');
-Route::get('/legal-aid', [PageController::class, 'legalAid'])->name('legal-aid');
-Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
-Route::get('/terms-conditions', [PageController::class, 'terms'])->name('terms');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// KTSP Mandal
-Route::get('/ktsp-mandal', [PageController::class, 'mandal'])->name('mandal');
-Route::get('/ktsp-mandal/governing-body', [PageController::class, 'governingBody'])->name('mandal.governing-body');
-Route::get('/ktsp-mandal/chairman-message', [PageController::class, 'chairmanMessage'])->name('mandal.chairman');
-Route::get('/ktsp-mandal/vice-chairman-message', [PageController::class, 'viceChairmanMessage'])->name('mandal.vice-chairman');
-Route::get('/ktsp-mandal/secretary-message', [PageController::class, 'secretaryMessage'])->name('mandal.secretary');
-Route::get('/principal-message', [PageController::class, 'principalMessage'])->name('mandal.principal');
+    // About & static pages
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/infrastructure', [PageController::class, 'infrastructure'])->name('infrastructure');
+    Route::get('/affiliation', [PageController::class, 'affiliation'])->name('affiliation');
+    Route::get('/anti-ragging', [PageController::class, 'antiRagging'])->name('anti-ragging');
+    Route::get('/rti', [PageController::class, 'rti'])->name('rti');
+    Route::get('/legal-aid', [PageController::class, 'legalAid'])->name('legal-aid');
+    Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
+    Route::get('/terms-conditions', [PageController::class, 'terms'])->name('terms');
 
-// Courses
-Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+    // KTSP Mandal
+    Route::get('/ktsp-mandal', [PageController::class, 'mandal'])->name('mandal');
+    Route::get('/ktsp-mandal/governing-body', [PageController::class, 'governingBody'])->name('mandal.governing-body');
+    Route::get('/ktsp-mandal/chairman-message', [PageController::class, 'chairmanMessage'])->name('mandal.chairman');
+    Route::get('/ktsp-mandal/vice-chairman-message', [PageController::class, 'viceChairmanMessage'])->name('mandal.vice-chairman');
+    Route::get('/ktsp-mandal/secretary-message', [PageController::class, 'secretaryMessage'])->name('mandal.secretary');
+    Route::get('/principal-message', [PageController::class, 'principalMessage'])->name('mandal.principal');
 
-// Faculty
-Route::get('/faculty', [FacultyController::class, 'index'])->name('faculty.index');
+    // Courses
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
 
-// Admissions
-Route::get('/admissions', [AdmissionController::class, 'index'])->name('admissions.index');
-Route::post('/admissions/apply', [AdmissionController::class, 'store'])->name('admissions.store');
-Route::get('/admissions/success/{appNo}', [AdmissionController::class, 'success'])->name('admissions.success');
+    // Faculty
+    Route::get('/faculty', [FacultyController::class, 'index'])->name('faculty.index');
 
-// Notices
-Route::get('/notices', [NoticeController::class, 'index'])->name('notices.index');
-Route::get('/notices/{notice}/download', [NoticeController::class, 'download'])->name('notices.download');
+    // Admissions
+    Route::get('/admissions', [AdmissionController::class, 'index'])->name('admissions.index');
+    Route::post('/admissions/apply', [AdmissionController::class, 'store'])->name('admissions.store');
+    Route::get('/admissions/success/{appNo}', [AdmissionController::class, 'success'])->name('admissions.success');
 
-// News & Events
-Route::get('/news-events', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news-events/{slug}', [NewsController::class, 'show'])->name('news.show');
+    // Notices
+    Route::get('/notices', [NoticeController::class, 'index'])->name('notices.index');
+    Route::get('/notices/{notice}/download', [NoticeController::class, 'download'])->name('notices.download');
 
-// Gallery
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
+    // News & Events
+    Route::get('/news-events', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/news-events/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-// Downloads
-Route::get('/downloads', [DownloadController::class, 'index'])->name('downloads.index');
-Route::get('/downloads/{download}/file', [DownloadController::class, 'download'])->name('downloads.file');
+    // Gallery
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
 
-// Contact
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    // Downloads
+    Route::get('/downloads', [DownloadController::class, 'index'])->name('downloads.index');
+    Route::get('/downloads/{download}/file', [DownloadController::class, 'download'])->name('downloads.file');
+
+    // Contact
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+});
 
 // ─── ADMIN ROUTES ─────────────────────────────────────────────────────────────
 
