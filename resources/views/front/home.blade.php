@@ -258,12 +258,20 @@
         background: rgba(255,255,255,.06);
     }
     .leader-avatar-ring {
-        width: 70px; height: 70px;
+        width: 90px; height: 90px;
         border-radius: 50%;
-        border: 3px solid rgba(255,255,255,.3);
+        border: 3px solid rgba(255,255,255,.5);
         display: flex; align-items: center; justify-content: center;
         margin: 0 auto 14px;
         background: rgba(255,255,255,.1);
+        overflow: hidden;
+    }
+    .leader-avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
     }
 
     /* ── Course Cards ──────────────────────────────── */
@@ -1017,16 +1025,16 @@
         </div>
         <div class="row g-4">
             @foreach([
-                ['name'=>'Shri. Santosh Gurunath Jangam',  'title'=>'Chairman, K.T.S.P. Mandal',          'icon'=>'fa-crown',        'cls'=>'lc-1','route'=>'mandal.chairman',     'excerpt'=>'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.','delay'=>0],
-                ['name'=>'Shri. Abubakar Aadam Jalgaonkar','title'=>'Vice-Chairman, K.T.S.P. Mandal',     'icon'=>'fa-star',         'cls'=>'lc-2','route'=>'mandal.vice-chairman','excerpt'=>'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.','delay'=>100],
-                ['name'=>'Shri. Kishor Balkrushna Patil',  'title'=>'Secretary, K.T.S.P. Mandal',         'icon'=>'fa-feather-alt',  'cls'=>'lc-3','route'=>'mandal.secretary',    'excerpt'=>'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.','delay'=>200],
-                ['name'=>'Principal',                       'title'=>'K.T.S.P.M\'s Law College, Khopoli',  'icon'=>'fa-balance-scale','cls'=>'lc-4','route'=>'mandal.principal',    'excerpt'=>'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.','delay'=>300],
+                ['photo'=>'https://kmccollege.in/storage/chairman.png','name'=>'Shri. Santosh Gurunath Jangam',  'title'=>'Chairman, K.T.S.P. Mandal',          'icon'=>'fa-crown',        'cls'=>'lc-1','route'=>'mandal.chairman',     'excerpt'=>'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.','delay'=>0],
+                ['photo'=>'https://kmccollege.in/storage/Jalgaonkar%20sir.jpg','name'=>'Shri. Abubakar Aadam Jalgaonkar','title'=>'Vice-Chairman, K.T.S.P. Mandal',     'icon'=>'fa-star',         'cls'=>'lc-2','route'=>'mandal.vice-chairman','excerpt'=>'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.','delay'=>100],
+                ['photo'=>'https://kmccollege.in/storage/secretary.png','name'=>'Shri. Kishor Balkrushna Patil',  'title'=>'Secretary, K.T.S.P. Mandal',         'icon'=>'fa-feather-alt',  'cls'=>'lc-3','route'=>'mandal.secretary',    'excerpt'=>'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.','delay'=>200],
+                ['photo'=>'storage/faculty/0ERGhG1iBRIoZXiA6lr7kCkHlPbv7F0aZwfmy6yb.jpg','name'=>'Principal',                       'title'=>'K.T.S.P.M\'s Law College, Khopoli',  'icon'=>'fa-balance-scale','cls'=>'lc-4','route'=>'mandal.principal',    'excerpt'=>'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.','delay'=>300],
             ] as $leader)
             <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="{{ $leader['delay'] }}">
                 <div class="leader-card">
                     <div class="leader-card-top {{ $leader['cls'] }}">
                         <div class="leader-avatar-ring">
-                            <i class="fas {{ $leader['icon'] }} fa-xl" style="color:var(--secondary-light)"></i>
+                            <img src="{{ $leader['photo'] ?? asset('images/leadership/' . Str::slug($leader['name']) . '.jpg') }}" alt="{{ $leader['name'] }}" class="leader-avatar">
                         </div>
                         <h6 style="color:#fff;font-size:.95rem;margin-bottom:4px;">{{ $leader['name'] }}</h6>
                         <small style="color:rgba(255,255,255,.65);font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;">{{ $leader['title'] }}</small>

@@ -25,7 +25,7 @@
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
                     <div class="py-5 px-4" style="background:linear-gradient(135deg,#1a5c35 0%,#2d6a4f 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;">
-                            <i class="fas fa-user-tie fa-4x" style="color:var(--secondary);"></i>
+                            <img src="storage/faculty/0ERGhG1iBRIoZXiA6lr7kCkHlPbv7F0aZwfmy6yb.jpg" alt="Principal" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>
                         <h4 class="text-white mb-1">Adv. Varsha Ghare</h4>
                         <p class="mb-1" style="color:rgba(255,255,255,.8);font-size:.88rem;">B.com, CIA, LLM</p>

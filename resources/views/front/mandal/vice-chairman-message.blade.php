@@ -26,7 +26,7 @@
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
                     <div class="py-5 px-4" style="background:linear-gradient(135deg,#8a6200 0%,#C8973A 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid #fff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-                            <i class="fas fa-star fa-4x text-white"></i>
+                            <img src="https://kmccollege.in/storage/Jalgaonkar%20sir.jpg" alt="Vice-Chairman" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>
                         <h4 class="text-white mb-1">Shri. Abubakar Aadam Jalgaonkar</h4>
                         <span class="badge px-3 py-2 mt-1" style="background:var(--primary);font-size:.9rem;">Vice-Chairman</span>

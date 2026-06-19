@@ -26,7 +26,7 @@
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
                     <div class="py-5 px-4" style="background:linear-gradient(135deg,var(--primary) 0%,#4a0f0f 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-                            <i class="fas fa-crown fa-4x" style="color:var(--secondary);"></i>
+                            <img src="https://kmccollege.in/storage/chairman.png" alt="Chairman" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>
                         <h4 class="text-white mb-1">Shri. Santosh Gurunath Jangam</h4>
                         <span class="badge px-3 py-2 mt-1" style="background:var(--secondary);font-size:.9rem;">Chairman</span>
