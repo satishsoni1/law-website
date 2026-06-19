@@ -796,6 +796,15 @@
         </div>
     @endif
 
+    @if(session('staging_access'))
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#162450;color:#fff;font-size:12px;font-weight:600;text-align:center;padding:8px;letter-spacing:.04em;">
+        <i class="fas fa-eye me-2" style="color:#C8973A"></i>
+        STAGING PREVIEW MODE — Website is currently in Coming Soon mode for public visitors.
+        &nbsp;
+        <a href="{{ route('staging.exit') }}" style="color:#C8973A;text-decoration:underline;">Exit Preview</a>
+    </div>
+    @endif
+
     @yield('content')
 
     <!-- Footer -->

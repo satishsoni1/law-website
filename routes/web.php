@@ -16,6 +16,21 @@ use App\Http\Controllers\Admin;
 // ─── COMING SOON (bypasses coming-soon middleware) ───────────────────────────
 Route::get('/coming-soon', fn () => view('front.coming-soon'))->name('coming-soon');
 
+// Staging access — sets a session flag to bypass the coming-soon page
+Route::get('/staging/{token}', function (string $token) {
+    if ($token === config('app.staging_token')) {
+        session(['staging_access' => true]);
+        return redirect('/')->with('staging', true);
+    }
+    abort(403, 'Invalid staging token.');
+})->name('staging.access');
+
+// Staging exit — clears the bypass session
+Route::get('/staging-exit', function () {
+    session()->forget('staging_access');
+    return redirect()->route('coming-soon');
+})->name('staging.exit');
+
 // ─── PUBLIC ROUTES (redirected to coming-soon when enabled) ──────────────────
 Route::middleware('coming-soon')->group(function () {
 

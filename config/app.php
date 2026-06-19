@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'staging_token' => env('STAGING_TOKEN', ''),
+
 ];
