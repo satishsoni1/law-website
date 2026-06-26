@@ -272,6 +272,7 @@
         object-fit: cover;
         border-radius: 50%;
         display: block;
+        object-position: top;
     }
 
     /* ── Course Cards ──────────────────────────────── */
@@ -908,6 +909,55 @@
 </section>
 
 {{-- ══════════════════════════════════════════════════
+     LEADERSHIP MESSAGES
+═════════════════════════════════════════════════════ --}}
+<section class="py-5 py-lg-6" style="background:var(--light);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">Leadership</span>
+            <h2 class="section-title mt-2">Messages from <span class="highlight">Leadership</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="section-subtitle mt-3">Guiding words from K.T.S.P. Mandal's leadership and our Principal</p>
+        </div>
+        <div class="row g-4">
+            @foreach([
+                ['photo'=>'https://kmccollege.in/storage/chairman.png','name'=>'Shri. Santosh Gurunath Jangam',  'title'=>'Chairman, K.T.S.P. Mandal',          'icon'=>'fa-crown',        'cls'=>'lc-1','route'=>'mandal.chairman',     'excerpt'=>'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.','delay'=>0],
+                ['photo'=>'https://kmccollege.in/storage/Jalgaonkar%20sir.jpg','name'=>'Shri. Abubakar Aadam Jalgaonkar','title'=>'Vice-Chairman, K.T.S.P. Mandal',     'icon'=>'fa-star',         'cls'=>'lc-2','route'=>'mandal.vice-chairman','excerpt'=>'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.','delay'=>100],
+                ['photo'=>'https://kmccollege.in/storage/secretary.png','name'=>'Shri. Kishor Balkrushna Patil',  'title'=>'Secretary, K.T.S.P. Mandal',         'icon'=>'fa-feather-alt',  'cls'=>'lc-3','route'=>'mandal.secretary',    'excerpt'=>'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.','delay'=>200],
+                ['photo'=>'storage/faculty/0ERGhG1iBRIoZXiA6lr7kCkHlPbv7F0aZwfmy6yb.jpg','name'=>'Principal',                       'title'=>'K.T.S.P.M\'s Law College, Khopoli',  'icon'=>'fa-balance-scale','cls'=>'lc-4','route'=>'mandal.principal',    'excerpt'=>'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.','delay'=>300],
+            ] as $leader)
+            <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="{{ $leader['delay'] }}">
+                <div class="leader-card">
+                    <div class="leader-card-top {{ $leader['cls'] }}">
+                        <div class="leader-avatar-ring">
+                            <img src="{{ $leader['photo'] ?? asset('images/leadership/' . Str::slug($leader['name']) . '.jpg') }}" alt="{{ $leader['name'] }}" class="leader-avatar">
+                        </div>
+                        <h6 style="color:#fff;font-size:.95rem;margin-bottom:4px;">{{ $leader['name'] }}</h6>
+                        <small style="color:rgba(255,255,255,.65);font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;">{{ $leader['title'] }}</small>
+                    </div>
+                    <div class="p-4 d-flex flex-column" style="flex:1;">
+                        <p style="font-size:.875rem;color:#666;line-height:1.8;font-style:italic;flex:1;">
+                            <i class="fas fa-quote-left me-1" style="color:var(--secondary);font-size:.75rem;"></i>
+                            {{ $leader['excerpt'] }}
+                            <i class="fas fa-quote-right ms-1" style="color:var(--secondary);font-size:.75rem;"></i>
+                        </p>
+                        <a href="{{ route($leader['route']) }}" class="btn-primary-c mt-3 text-center" style="display:block;font-size:.82rem;padding:9px 16px;">
+                            <i class="fas fa-book-open me-1"></i> Read Full Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('mandal') }}" class="btn-outline-primary-c">
+                <i class="fas fa-building me-2"></i>About K.T.S.P. Mandal
+            </a>
+        </div>
+    </div>
+</section>
+
+{{-- ══════════════════════════════════════════════════
      WHY CHOOSE US
 ═════════════════════════════════════════════════════ --}}
 <section class="py-5 py-lg-6" style="background:var(--light);">
@@ -1011,55 +1061,6 @@
     </div>
 </section>
 @endif
-
-{{-- ══════════════════════════════════════════════════
-     LEADERSHIP MESSAGES
-═════════════════════════════════════════════════════ --}}
-<section class="py-5 py-lg-6" style="background:var(--light);">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="section-label">Leadership</span>
-            <h2 class="section-title mt-2">Messages from <span class="highlight">Leadership</span></h2>
-            <div class="title-divider center mt-3"></div>
-            <p class="section-subtitle mt-3">Guiding words from K.T.S.P. Mandal's leadership and our Principal</p>
-        </div>
-        <div class="row g-4">
-            @foreach([
-                ['photo'=>'https://kmccollege.in/storage/chairman.png','name'=>'Shri. Santosh Gurunath Jangam',  'title'=>'Chairman, K.T.S.P. Mandal',          'icon'=>'fa-crown',        'cls'=>'lc-1','route'=>'mandal.chairman',     'excerpt'=>'Education is the most powerful instrument for social transformation. The establishment of K.T.S.P.M\'s Law College represents a significant milestone in our mission to make quality education accessible to all.','delay'=>0],
-                ['photo'=>'https://kmccollege.in/storage/Jalgaonkar%20sir.jpg','name'=>'Shri. Abubakar Aadam Jalgaonkar','title'=>'Vice-Chairman, K.T.S.P. Mandal',     'icon'=>'fa-star',         'cls'=>'lc-2','route'=>'mandal.vice-chairman','excerpt'=>'With this college, we have brought legal education home for students of Raigad District who aspired to enter the legal field but were constrained by distance and resources.','delay'=>100],
-                ['photo'=>'https://kmccollege.in/storage/secretary.png','name'=>'Shri. Kishor Balkrushna Patil',  'title'=>'Secretary, K.T.S.P. Mandal',         'icon'=>'fa-feather-alt',  'cls'=>'lc-3','route'=>'mandal.secretary',    'excerpt'=>'Transparency, accountability, and student welfare are the pillars of our approach. We are committed to ensuring every student has access to the best possible academic environment.','delay'=>200],
-                ['photo'=>'storage/faculty/0ERGhG1iBRIoZXiA6lr7kCkHlPbv7F0aZwfmy6yb.jpg','name'=>'Principal',                       'title'=>'K.T.S.P.M\'s Law College, Khopoli',  'icon'=>'fa-balance-scale','cls'=>'lc-4','route'=>'mandal.principal',    'excerpt'=>'Law is not merely about knowing statutes — it is about understanding society, advocating for fairness, and standing up for those who cannot stand up for themselves.','delay'=>300],
-            ] as $leader)
-            <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="{{ $leader['delay'] }}">
-                <div class="leader-card">
-                    <div class="leader-card-top {{ $leader['cls'] }}">
-                        <div class="leader-avatar-ring">
-                            <img src="{{ $leader['photo'] ?? asset('images/leadership/' . Str::slug($leader['name']) . '.jpg') }}" alt="{{ $leader['name'] }}" class="leader-avatar">
-                        </div>
-                        <h6 style="color:#fff;font-size:.95rem;margin-bottom:4px;">{{ $leader['name'] }}</h6>
-                        <small style="color:rgba(255,255,255,.65);font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;">{{ $leader['title'] }}</small>
-                    </div>
-                    <div class="p-4 d-flex flex-column" style="flex:1;">
-                        <p style="font-size:.875rem;color:#666;line-height:1.8;font-style:italic;flex:1;">
-                            <i class="fas fa-quote-left me-1" style="color:var(--secondary);font-size:.75rem;"></i>
-                            {{ $leader['excerpt'] }}
-                            <i class="fas fa-quote-right ms-1" style="color:var(--secondary);font-size:.75rem;"></i>
-                        </p>
-                        <a href="{{ route($leader['route']) }}" class="btn-primary-c mt-3 text-center" style="display:block;font-size:.82rem;padding:9px 16px;">
-                            <i class="fas fa-book-open me-1"></i> Read Full Message
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-5" data-aos="fade-up">
-            <a href="{{ route('mandal') }}" class="btn-outline-primary-c">
-                <i class="fas fa-building me-2"></i>About K.T.S.P. Mandal
-            </a>
-        </div>
-    </div>
-</section>
 
 {{-- ══════════════════════════════════════════════════
      FACULTY
