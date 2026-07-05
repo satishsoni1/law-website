@@ -75,4 +75,9 @@ class PageController extends Controller
     {
         return view('front.mandal.principal-message');
     }
+
+    public function lawCollegeChairmanMessage()
+    {
+        return view('front.law-college-chairman-message');
+    }
 }

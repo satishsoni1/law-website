@@ -32,7 +32,7 @@ class FacultyController extends AdminController
             'photo'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'email'          => 'nullable|email',
             'phone'          => 'nullable|string|max:20',
-            'category'       => 'required|in:permanent,visiting',
+            'category'       => 'required|in:permanent,visiting,non_teaching',
             'order'          => 'nullable|integer',
             'is_active'      => 'boolean',
         ]);
@@ -66,7 +66,7 @@ class FacultyController extends AdminController
             'photo'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'email'          => 'nullable|email',
             'phone'          => 'nullable|string|max:20',
-            'category'       => 'required|in:permanent,visiting',
+            'category'       => 'required|in:permanent,visiting,non_teaching',
             'order'          => 'nullable|integer',
             'is_active'      => 'boolean',
         ]);

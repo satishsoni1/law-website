@@ -20,13 +20,13 @@
         <div class="row g-4 mb-5">
             @foreach($permanent as $member)
                 <div class="col-md-3 col-6" data-aos="fade-up">
-                    <div class="faculty-card card">
+                    <div class="faculty-card card h-100 d-flex flex-column">
                         @if($member->photo)
-                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}">
+                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" class="faculty-avatar">
                         @else
-                            <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center text-white mt-4" style="width:110px;height:110px;background:var(--primary);font-size:2.5rem;font-weight:700;">{{ strtoupper(substr($member->name,0,1)) }}</div>
+                            <div class="faculty-avatar-placeholder">{{ strtoupper(substr($member->name,0,1)) }}</div>
                         @endif
-                        <div class="p-3">
+                        <div class="p-3 flex-grow-1">
                             <h6 class="mb-1">{{ $member->name }}</h6>
                             <small class="text-maroon d-block fw-semibold">{{ $member->designation }}</small>
                             <small class="text-muted">{{ $member->qualification }}</small>
@@ -45,20 +45,43 @@
 
         @if($visiting->count())
         <h3 class="section-title text-maroon mb-4">Visiting Faculty</h3>
-        <div class="row g-4">
+        <div class="row g-4 mb-5">
             @foreach($visiting as $member)
                 <div class="col-md-3 col-6" data-aos="fade-up">
-                    <div class="faculty-card card">
+                    <div class="faculty-card card h-100 d-flex flex-column">
                         @if($member->photo)
-                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}">
+                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" class="faculty-avatar">
                         @else
-                            <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center text-white mt-4" style="width:110px;height:110px;background:var(--secondary);font-size:2.5rem;font-weight:700;">{{ strtoupper(substr($member->name,0,1)) }}</div>
+                            <div class="faculty-avatar-placeholder">{{ strtoupper(substr($member->name,0,1)) }}</div>
                         @endif
-                        <div class="p-3">
+                        <div class="p-3 flex-grow-1">
                             <h6 class="mb-1">{{ $member->name }}</h6>
                             <small class="text-muted d-block fw-semibold">{{ $member->designation }}</small>
                             <small class="text-muted">{{ $member->qualification }}</small>
                             <br><span class="badge bg-warning text-dark mt-1" style="font-size:10px">Visiting</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        @endif
+
+        @if($nonTeaching->count())
+        <h3 class="section-title text-maroon mb-4">Non-Teaching Staff</h3>
+        <div class="row g-4">
+            @foreach($nonTeaching as $member)
+                <div class="col-md-3 col-6" data-aos="fade-up">
+                    <div class="faculty-card card h-100 d-flex flex-column">
+                        @if($member->photo)
+                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" class="faculty-avatar">
+                        @else
+                            <div class="faculty-avatar-placeholder">{{ strtoupper(substr($member->name,0,1)) }}</div>
+                        @endif
+                        <div class="p-3 flex-grow-1">
+                            <h6 class="mb-1">{{ $member->name }}</h6>
+                            <small class="text-muted d-block fw-semibold">{{ $member->designation }}</small>
+                            <small class="text-muted">{{ $member->qualification }}</small>
+                            <br><span class="badge bg-secondary mt-1" style="font-size:10px">Non-Teaching</span>
                         </div>
                     </div>
                 </div>

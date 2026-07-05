@@ -25,7 +25,7 @@
                     @if($album->type === 'video' && $img->video_url)
                         <a href="{{ $img->video_url }}" class="glightbox d-block" data-gallery="album" data-title="{{ $img->caption }}">
                             <div class="position-relative" style="height:180px;background:#000;border-radius:8px;overflow:hidden;">
-                                <img src="https://img.youtube.com/vi/{{ basename(parse_url($img->video_url, PHP_URL_PATH)) }}/hqdefault.jpg" class="w-100 h-100" style="object-fit:cover;opacity:.7">
+                                <img src="https://img.youtube.com/vi/{{ basename(parse_url($img->video_url, PHP_URL_PATH)) }}/hqdefault.jpg" class="w-100 h-100" style="object-fit:cover;object-position:top;opacity:.7">
                                 <div class="position-absolute top-50 start-50 translate-middle">
                                     <i class="fas fa-play-circle text-white fa-3x"></i>
                                 </div>
@@ -34,7 +34,7 @@
                     @else
                         <a href="{{ asset('storage/' . $img->image) }}" class="glightbox d-block" data-gallery="album" data-title="{{ $img->caption }}">
                             <div style="height:180px;border-radius:8px;overflow:hidden;">
-                                <img src="{{ asset('storage/' . $img->image) }}" class="w-100 h-100" style="object-fit:cover;transition:.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="{{ $img->caption }}">
+                                <img src="{{ asset('storage/' . $img->image) }}" class="w-100 h-100" style="object-fit:cover;object-position:top;transition:.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="{{ $img->caption }}">
                             </div>
                         </a>
                     @endif

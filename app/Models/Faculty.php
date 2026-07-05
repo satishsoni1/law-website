@@ -29,4 +29,9 @@ class Faculty extends Model
     {
         return $query->where('category', 'visiting');
     }
+
+    public function scopeNonTeaching($query)
+    {
+        return $query->where('category', 'non_teaching');
+    }
 }

@@ -9,7 +9,19 @@
       "Read(//Users/apple/Desktop/**)",
       "Bash(ls ~/Desktop/ | head -20 && ls ~/Downloads/ | head -20)",
       "Read(//Users/apple/Downloads/**)",
-      "Bash(php artisan *)"
+      "Bash(php artisan *)",
+      "Bash(php -l app/Http/Controllers/PageController.php)",
+      "Bash(python3 -)",
+      "Bash(php -l app/Http/Controllers/FacultyController.php)",
+      "Bash(php -l app/Http/Controllers/Admin/FacultyController.php)",
+      "Bash(php -l app/Models/Faculty.php)",
+      "Bash(curl -s -o /tmp/faculty.html -w \"faculty: %{http_code}\\\\n\" http://127.0.0.1:8123/faculty)",
+      "Bash(curl -s -o /tmp/gallery.html -w \"gallery: %{http_code}\\\\n\" http://127.0.0.1:8123/gallery)",
+      "Bash(curl -s -o /tmp/home.html -w \"home: %{http_code}\\\\n\" http://127.0.0.1:8123/)",
+      "Bash(kill %1)",
+      "Bash(curl -s -L -o /tmp/faculty.html -w \"faculty: %{http_code}\\\\n\" http://127.0.0.1:8123/faculty)",
+      "Bash(curl -s -L -o /tmp/gallery.html -w \"gallery: %{http_code}\\\\n\" http://127.0.0.1:8123/gallery)",
+      "Bash(curl -s -L -o /tmp/home.html -w \"home: %{http_code}\\\\n\" http://127.0.0.1:8123/)"
     ]
   }
 }

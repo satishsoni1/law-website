@@ -22,7 +22,7 @@
                         <div class="card border-0 shadow-sm overflow-hidden">
                             <div class="position-relative" style="height:200px;">
                                 @if($album->cover_image)
-                                    <img src="{{ asset('storage/' . $album->cover_image) }}" class="w-100 h-100" style="object-fit:cover;" alt="{{ $album->title }}">
+                                    <img src="{{ asset('storage/' . $album->cover_image) }}" class="w-100 h-100" style="object-fit:cover;object-position:top;" alt="{{ $album->title }}">
                                 @else
                                     <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background:var(--primary)">
                                         <i class="fas fa-images fa-3x text-white opacity-50"></i>

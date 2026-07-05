@@ -8,8 +8,9 @@ class FacultyController extends Controller
 {
     public function index()
     {
-        $permanent = Faculty::active()->permanent()->get();
-        $visiting  = Faculty::active()->visiting()->get();
-        return view('front.faculty', compact('permanent', 'visiting'));
+        $permanent   = Faculty::active()->permanent()->get();
+        $visiting    = Faculty::active()->visiting()->get();
+        $nonTeaching = Faculty::active()->nonTeaching()->get();
+        return view('front.faculty', compact('permanent', 'visiting', 'nonTeaching'));
     }
 }

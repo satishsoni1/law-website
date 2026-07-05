@@ -53,6 +53,7 @@ Route::middleware('coming-soon')->group(function () {
     Route::get('/ktsp-mandal/vice-chairman-message', [PageController::class, 'viceChairmanMessage'])->name('mandal.vice-chairman');
     Route::get('/ktsp-mandal/secretary-message', [PageController::class, 'secretaryMessage'])->name('mandal.secretary');
     Route::get('/principal-message', [PageController::class, 'principalMessage'])->name('mandal.principal');
+    Route::get('/law-college-chairman-message', [PageController::class, 'lawCollegeChairmanMessage'])->name('law-college.chairman');
 
     // Courses
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');

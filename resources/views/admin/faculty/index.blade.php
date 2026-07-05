@@ -17,7 +17,7 @@
                     <td><strong>{{ $f->name }}</strong></td>
                     <td>{{ $f->designation }}</td>
                     <td><small>{{ $f->qualification }}</small></td>
-                    <td><span class="badge {{ $f->category === 'permanent' ? 'bg-primary' : 'bg-warning text-dark' }}">{{ ucfirst($f->category) }}</span></td>
+                    <td><span class="badge {{ $f->category === 'permanent' ? 'bg-primary' : ($f->category === 'visiting' ? 'bg-warning text-dark' : 'bg-secondary') }}">{{ $f->category === 'non_teaching' ? 'Non-Teaching' : ucfirst($f->category) }}</span></td>
                     <td><span class="badge {{ $f->is_active ? 'bg-success' : 'bg-secondary' }}">{{ $f->is_active ? 'Active' : 'Inactive' }}</span></td>
                     <td>
                         <a href="{{ route('admin.faculty.edit', $f) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>

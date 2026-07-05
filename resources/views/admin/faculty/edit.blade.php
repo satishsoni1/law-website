@@ -16,6 +16,7 @@
                     <select name="category" class="form-select">
                         <option value="permanent" {{ old('category', $faculty->category) === 'permanent' ? 'selected' : '' }}>Permanent</option>
                         <option value="visiting" {{ old('category', $faculty->category) === 'visiting' ? 'selected' : '' }}>Visiting</option>
+                        <option value="non_teaching" {{ old('category', $faculty->category) === 'non_teaching' ? 'selected' : '' }}>Non-Teaching Staff</option>
                     </select>
                 </div>
                 <div class="col-md-6">
