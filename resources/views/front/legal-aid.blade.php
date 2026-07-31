@@ -91,7 +91,7 @@
                                         <small class="{{ $m['type']==='faculty' ? 'text-maroon' : 'text-muted' }} fw-semibold">{{ $m['role'] }}</small>
                                     </div>
                                     <div class="ms-auto">
-                                        <span class="badge" style="background:{{ $m['type']==='faculty' ? 'rgba(22,36,80,.1)' : 'rgba(200,151,58,.15)' }};color:{{ $m['type']==='faculty' ? 'var(--primary)' : 'var(--secondary)' }};font-size:.7rem;">
+                                        <span class="badge" style="background:{{ $m['type']==='faculty' ? 'rgba(28,19,16,.1)' : 'rgba(217,154,30,.15)' }};color:{{ $m['type']==='faculty' ? 'var(--primary)' : 'var(--secondary)' }};font-size:.7rem;">
                                             {{ ucfirst($m['type']) }}
                                         </span>
                                     </div>

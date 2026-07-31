@@ -78,11 +78,11 @@
         <h2 class="section-title text-center text-maroon">Institutions Under K.T.S.P. Mandal</h2>
         <div class="row g-4 mt-2">
             @foreach([
-                ['icon'=>'fa-school','count'=>'11','label'=>'Schools','desc'=>'English & Marathi medium schools providing primary and secondary education across Khalapur Taluka.','color'=>'#7B1C1C'],
-                ['icon'=>'fa-graduation-cap','count'=>'3','label'=>'Junior Colleges','desc'=>'Junior colleges offering Arts, Science, and Commerce streams for 11th and 12th standard.','color'=>'#C8973A'],
+                ['icon'=>'fa-school','count'=>'11','label'=>'Schools','desc'=>'English & Marathi medium schools providing primary and secondary education across Khalapur Taluka.','color'=>'#1C1310'],
+                ['icon'=>'fa-graduation-cap','count'=>'3','label'=>'Junior Colleges','desc'=>'Junior colleges offering Arts, Science, and Commerce streams for 11th and 12th standard.','color'=>'#D99A1E'],
                 ['icon'=>'fa-tools','count'=>'1','label'=>'Polytechnic','desc'=>'A polytechnic institute offering diploma-level technical and vocational programs.','color'=>'#1a1a2e'],
                 ['icon'=>'fa-university','count'=>'1','label'=>'Senior College','desc'=>'K.M.C.C. Senior College offering undergraduate programs in Arts, Commerce, and Science.','color'=>'#2d6a4f'],
-                ['icon'=>'fa-balance-scale','count'=>'1','label'=>'Law College','desc'=>'K.T.S.P.M\'s Law College, Khopoli — offering LL.B. (3 Years) affiliated to University of Mumbai.','color'=>'#7B1C1C'],
+                ['icon'=>'fa-balance-scale','count'=>'1','label'=>'Law College','desc'=>'K.T.S.P.M\'s Law College, Khopoli — offering LL.B. (3 Years) affiliated to University of Mumbai.','color'=>'#1C1310'],
             ] as $inst)
             <div class="col-md-4 col-lg" data-aos="fade-up">
                 <div class="card border-0 shadow-sm h-100 text-center p-4">

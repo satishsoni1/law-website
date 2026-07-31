@@ -28,16 +28,14 @@
         {{-- Executive Members --}}
         <div class="row g-4 justify-content-center mb-5">
             @foreach([
-                ['sr'=>'01','name'=>'Shri. Santosh Gurunath Jangam','role'=>'Chairman','icon'=>'fa-crown','color'=>'var(--primary)','route'=>'mandal.chairman'],
-                ['sr'=>'02','name'=>'Shri. Abubakar Aadam Jalgaonkar','role'=>'Vice-Chairman','icon'=>'fa-star','color'=>'var(--secondary)','route'=>'mandal.vice-chairman'],
-                ['sr'=>'03','name'=>'Shri. Kishor Balkrushna Patil','role'=>'Secretary','icon'=>'fa-feather-alt','color'=>'#1a1a2e','route'=>'mandal.secretary'],
+                ['sr'=>'01','name'=>'Shri. Santosh Gurunath Jangam','role'=>'Chairman','icon'=>'fa-crown','color'=>'var(--primary)','route'=>'mandal.chairman','photo'=>'https://kmccollege.in/storage/chairman.png'],
+                ['sr'=>'02','name'=>'Shri. Abubakar Aadam Jalgaonkar','role'=>'Vice-Chairman','icon'=>'fa-star','color'=>'var(--secondary)','route'=>'mandal.vice-chairman','photo'=>'https://kmccollege.in/storage/Jalgaonkar%20sir.jpg'],
+                ['sr'=>'03','name'=>'Shri. Kishor Balkrushna Patil','role'=>'Secretary','icon'=>'fa-feather-alt','color'=>'#1a1a2e','route'=>'mandal.secretary','photo'=>'https://kmccollege.in/storage/secretary.png'],
             ] as $exec)
             <div class="col-md-4" data-aos="zoom-in">
                 <div class="card border-0 shadow text-center p-4" style="border-top:5px solid {{ $exec['color'] }};border-radius:16px;">
                     <div class="mb-3">
-                        <div style="width:80px;height:80px;background:{{ $exec['color'] }};border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;">
-                            <i class="fas {{ $exec['icon'] }} fa-2x text-white"></i>
-                        </div>
+                        <img src="{{ $exec['photo'] }}" alt="{{ $exec['name'] }}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid {{ $exec['color'] }};margin:0 auto;display:block;">
                     </div>
                     <span class="badge mb-2 px-3 py-2" style="background:{{ $exec['color'] }};font-size:.85rem;">{{ $exec['role'] }}</span>
                     <h5 class="mb-1">{{ $exec['name'] }}</h5>

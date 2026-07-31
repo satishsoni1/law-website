@@ -21,7 +21,28 @@
       "Bash(kill %1)",
       "Bash(curl -s -L -o /tmp/faculty.html -w \"faculty: %{http_code}\\\\n\" http://127.0.0.1:8123/faculty)",
       "Bash(curl -s -L -o /tmp/gallery.html -w \"gallery: %{http_code}\\\\n\" http://127.0.0.1:8123/gallery)",
-      "Bash(curl -s -L -o /tmp/home.html -w \"home: %{http_code}\\\\n\" http://127.0.0.1:8123/)"
+      "Bash(curl -s -L -o /tmp/home.html -w \"home: %{http_code}\\\\n\" http://127.0.0.1:8123/)",
+      "Bash(grep -n -E \"^\\\\s*--|:root|primary-color|#[0-9a-fA-F]{3,6}\" ./resources/views/layouts/front.blade.php)",
+      "Bash(find /private/var/folders/mm/66rwhxxs4054117b_mntxbwr0000gn/T -maxdepth 2 -type d -newer /Users/apple/Documents/law-college/.git 2>/dev/null | head -30; echo \"---recent images---\"; find /private/var/folders/mm/66rwhxxs4054117b_mntxbwr0000gn/T -iname \"*.png\" -newermt \"-2 hours\" 2>/dev/null | head -30; find $HOME/Downloads $HOME/Desktop -iname \"*.png\" -newermt \"-2 hours\" 2>/dev/null | head -30)",
+      "Read(//private/var/folders/mm/66rwhxxs4054117b_mntxbwr0000gn/T/**)",
+      "Bash(php -r ' *)",
+      "Bash(php -m)",
+      "Bash(php /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/make_logo_transparent.php storage/app/public/logo.png /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/logo-transparent.png)",
+      "Bash(php /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/make_favicon.php /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/logo-transparent.png /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/favicon.png /private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/favicon.ico)",
+      "Bash(curl -s -D - -o /dev/null http://127.0.0.1:8123/)",
+      "Bash(curl -sL -o /tmp/home.html -w \"%{http_code}\\\\n\" http://127.0.0.1:8123/)",
+      "Bash(curl -s -o /tmp/admin_login.html -w \"%{http_code}\\\\n\" http://127.0.0.1:8123/admin/login)",
+      "Bash(curl -s -o /tmp/home_full.html -w \"%{http_code}\\\\n\" http://127.0.0.1:8123/)",
+      "Bash(curl -s -o /tmp/gov_body.html -w \"%{http_code}\\\\n\" http://127.0.0.1:8123/ktsp-mandal/governing-body)",
+      "Bash(pkill -f \"artisan serve --port=8123\")",
+      "Bash(sed -i '' 's/--accent:       #7A2E32;/--accent:       #B37C16;/' resources/views/front/coming-soon.blade.php)",
+      "Bash(sed -i '' 's/--accent: #7A2E32;/--accent: #B37C16;/' resources/views/layouts/front.blade.php)",
+      "Bash(sed -i '' \"s/'color'=>'#7A2E32'/'color'=>'#6B2430'/g\" resources/views/front/mandal/about.blade.php)",
+      "Bash(ls /Applications | grep -i chrome; which chromium chromium-browser google-chrome 2>/dev/null)",
+      "Read(//Applications/**)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,2400 --screenshot=/private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/home_charcoal.png http://127.0.0.1:8123/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,4000 --virtual-time-budget=5000 --screenshot=/private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/home_charcoal2.png http://127.0.0.1:8123/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4000 --screenshot=/private/tmp/claude-501/-Users-apple-Documents-law-college/27fe1e58-0b19-4ac6-a67a-917d0b7a889e/scratchpad/about_page.png http://127.0.0.1:8123/about)"
     ]
   }
 }

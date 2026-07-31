@@ -34,7 +34,7 @@
     .hero-section::after {
         content: '';
         position: absolute; inset: 0; z-index: 1;
-        background: linear-gradient(105deg, rgba(10,18,40,.82) 0%, rgba(22,36,80,.55) 55%, rgba(10,18,40,.6) 100%);
+        background: linear-gradient(105deg, rgba(18,12,38,.82) 0%, rgba(28,19,16,.55) 55%, rgba(18,12,38,.6) 100%);
     }
     .hero-content {
         position: relative; z-index: 2;
@@ -42,8 +42,8 @@
     }
     .hero-eyebrow {
         display: inline-flex; align-items: center; gap: 8px;
-        background: rgba(200,151,58,.18);
-        border: 1px solid rgba(200,151,58,.35);
+        background: rgba(217,154,30,.18);
+        border: 1px solid rgba(217,154,30,.35);
         color: var(--secondary-light);
         font-size: 12px;
         font-weight: 700;
@@ -81,13 +81,13 @@
         padding: 14px 30px;
         border-radius: 12px;
         text-decoration: none;
-        box-shadow: 0 6px 25px rgba(200,151,58,.4);
+        box-shadow: 0 6px 25px rgba(217,154,30,.4);
         transition: all .3s ease;
         letter-spacing: 0.01em;
     }
     .hero-cta-primary:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 35px rgba(200,151,58,.55);
+        box-shadow: 0 10px 35px rgba(217,154,30,.55);
         color: #fff;
     }
     .hero-cta-secondary {
@@ -160,7 +160,7 @@
         transition: all .3s ease;
     }
     .stat-item:last-child { border-right: none; }
-    .stat-item:hover { background: rgba(22,36,80,.04); }
+    .stat-item:hover { background: rgba(28,19,16,.04); }
     .stat-number {
         font-family: 'Fraunces', serif;
         font-size: 2.2rem;
@@ -181,7 +181,7 @@
     .stat-icon {
         width: 40px; height: 40px;
         border-radius: 10px;
-        background: rgba(22,36,80,.09);
+        background: rgba(28,19,16,.09);
         display: inline-flex; align-items: center; justify-content: center;
         margin-bottom: 10px;
         font-size: 15px;
@@ -199,7 +199,7 @@
     }
     .about-feature-card:hover {
         border-color: var(--secondary);
-        box-shadow: 0 4px 20px rgba(200,151,58,.12);
+        box-shadow: 0 4px 20px rgba(217,154,30,.12);
     }
     .about-feature-icon {
         width: 44px; height: 44px; flex-shrink: 0;
@@ -278,7 +278,7 @@
     /* ── Course Cards ──────────────────────────────── */
     .course-pill {
         display: inline-block;
-        background: rgba(200,151,58,.12);
+        background: rgba(217,154,30,.12);
         color: var(--secondary);
         font-size: .72rem; font-weight: 700;
         letter-spacing: .06em; text-transform: uppercase;
@@ -326,7 +326,7 @@
         padding: 10px 12px;
         transition: all .3s ease;
     }
-    .gallery-thumb:hover .gallery-overlay { background: linear-gradient(to top, rgba(139,26,26,.7) 0%, transparent 60%); }
+    .gallery-thumb:hover .gallery-overlay { background: linear-gradient(to top, rgba(28,19,16,.7) 0%, transparent 60%); }
     .gallery-thumb .gallery-title {
         color: #fff; font-size: .78rem; font-weight: 600;
         line-height: 1.3;
@@ -343,7 +343,7 @@
     }
     .testimonial-card:hover {
         background: rgba(255,255,255,.12);
-        border-color: rgba(200,151,58,.3);
+        border-color: rgba(217,154,30,.3);
         transform: translateY(-4px);
     }
     .star-rating i { color: var(--secondary); font-size: 13px; }
@@ -360,14 +360,14 @@
     }
 
     /* ── Why Icon Variants ─────────────────────────── */
-    .wi-primary   { background: rgba(139,26,26,.09); color: var(--primary); }
-    .wi-secondary { background: rgba(200,151,58,.10); color: var(--secondary); }
-    .wi-accent    { background: rgba(30,58,95,.09);   color: var(--accent); }
+    .wi-primary   { background: rgba(28,19,16,.09); color: var(--primary); }
+    .wi-secondary { background: rgba(217,154,30,.10); color: var(--secondary); }
+    .wi-accent    { background: rgba(179,124,22,.09);   color: var(--accent); }
 
     /* ── Leader Card Backgrounds ───────────────────── */
     .lc-1 { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
-    .lc-2 { background: linear-gradient(135deg, #8a6820, var(--secondary)); }
-    .lc-3 { background: linear-gradient(135deg, var(--accent), #152b47); }
+    .lc-2 { background: linear-gradient(135deg, #B37C16, var(--secondary)); }
+    .lc-3 { background: linear-gradient(135deg, var(--accent), var(--primary-dark)); }
     .lc-4 { background: linear-gradient(135deg, #1a5c35, #0e3b22); }
     .lc-5 { background: linear-gradient(135deg, #7a1f1f, #3d0f0f); }
 
@@ -379,8 +379,8 @@
         padding: 4px 10px; border-radius: 6px;
         margin-bottom: 8px;
     }
-    .news-badge-event { background: rgba(200,151,58,.15); color: var(--secondary); }
-    .news-badge-news  { background: rgba(139,26,26,.1);   color: var(--primary); }
+    .news-badge-event { background: rgba(217,154,30,.15); color: var(--secondary); }
+    .news-badge-news  { background: rgba(28,19,16,.1);   color: var(--primary); }
 
     /* ── Scrolling Counters ────────────────────────── */
     .counter-num { display: inline-block; }
@@ -407,7 +407,7 @@
         position: absolute; top: -60px; right: -60px;
         width: 180px; height: 180px;
         border-radius: 50%;
-        background: rgba(200,151,58,.07);
+        background: rgba(217,154,30,.07);
         pointer-events: none;
     }
 
@@ -456,10 +456,10 @@
         text-decoration: none;
         transition: all .25s ease;
     }
-    .hc-course:hover { background: rgba(200,151,58,.12); border-color: rgba(200,151,58,.25); }
+    .hc-course:hover { background: rgba(217,154,30,.12); border-color: rgba(217,154,30,.25); }
     .hc-course .hc-course-icon {
         width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-        background: rgba(200,151,58,.15);
+        background: rgba(217,154,30,.15);
         display: flex; align-items: center; justify-content: center;
         font-size: 13px; color: var(--secondary-light);
     }
@@ -519,7 +519,7 @@
         transition: all .3s ease;
         letter-spacing: 0.01em;
     }
-    .hc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,151,58,.4); color: #fff; }
+    .hc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(217,154,30,.4); color: #fff; }
     .hc-btn-ghost {
         display: flex; align-items: center; justify-content: center; gap: 8px;
         border: 1px solid rgba(255,255,255,.2);
@@ -529,7 +529,7 @@
         transition: all .3s ease;
         backdrop-filter: blur(4px);
     }
-    .hc-btn-ghost:hover { border-color: rgba(200,151,58,.5); color: var(--secondary-light); }
+    .hc-btn-ghost:hover { border-color: rgba(217,154,30,.5); color: var(--secondary-light); }
 
     /* carousel dots */
     #heroRightSlider .carousel-indicators {
@@ -808,7 +808,7 @@
                 <div class="row g-3 mt-3">
                     <div class="col-sm-6">
                         <div class="about-feature-card">
-                            <div class="about-feature-icon" style="background:rgba(139,26,26,.08);">
+                            <div class="about-feature-icon" style="background:rgba(28,19,16,.08);">
                                 <i class="fas fa-university" style="color:var(--primary)"></i>
                             </div>
                             <div>
@@ -819,7 +819,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="about-feature-card">
-                            <div class="about-feature-icon" style="background:rgba(200,151,58,.1);">
+                            <div class="about-feature-icon" style="background:rgba(217,154,30,.1);">
                                 <i class="fas fa-gavel" style="color:var(--secondary)"></i>
                             </div>
                             <div>
@@ -830,7 +830,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="about-feature-card">
-                            <div class="about-feature-icon" style="background:rgba(30,58,95,.08);">
+                            <div class="about-feature-icon" style="background:rgba(179,124,22,.08);">
                                 <i class="fas fa-book-reader" style="color:var(--accent)"></i>
                             </div>
                             <div>
@@ -841,7 +841,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="about-feature-card">
-                            <div class="about-feature-icon" style="background:rgba(139,26,26,.08);">
+                            <div class="about-feature-icon" style="background:rgba(28,19,16,.08);">
                                 <i class="fas fa-landmark" style="color:var(--primary)"></i>
                             </div>
                             <div>
@@ -866,7 +866,7 @@
                         <h5 style="color:var(--secondary-light);font-size:1.05rem;margin:0;">
                             <i class="fas fa-bullhorn me-2"></i>Notice Board
                         </h5>
-                        <span style="background:rgba(200,151,58,.2);color:var(--secondary-light);font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:6px;">LATEST</span>
+                        <span style="background:rgba(217,154,30,.2);color:var(--secondary-light);font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:6px;">LATEST</span>
                     </div>
                     @forelse($notices as $notice)
                         <div class="notice-item">
@@ -882,9 +882,9 @@
                                 </div>
                                 @if($notice->attachment)
                                     <a href="{{ route('notices.download', $notice) }}" title="Download"
-                                       style="width:30px;height:30px;background:rgba(200,151,58,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--secondary-light);text-decoration:none;transition:all .3s ease;"
-                                       onmouseover="this.style.background='rgba(200,151,58,.4)'"
-                                       onmouseout="this.style.background='rgba(200,151,58,.2)'">
+                                       style="width:30px;height:30px;background:rgba(217,154,30,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--secondary-light);text-decoration:none;transition:all .3s ease;"
+                                       onmouseover="this.style.background='rgba(217,154,30,.4)'"
+                                       onmouseout="this.style.background='rgba(217,154,30,.2)'">
                                         <i class="fas fa-download" style="font-size:11px;"></i>
                                     </a>
                                 @endif
@@ -897,8 +897,8 @@
                         </div>
                     @endforelse
                     <a href="{{ route('notices.index') }}"
-                       style="display:block;text-align:center;margin-top:16px;padding:10px;border:1px solid rgba(200,151,58,.35);border-radius:10px;color:var(--secondary-light);font-size:.84rem;font-weight:600;text-decoration:none;transition:all .3s ease;"
-                       onmouseover="this.style.background='rgba(200,151,58,.12)'"
+                       style="display:block;text-align:center;margin-top:16px;padding:10px;border:1px solid rgba(217,154,30,.35);border-radius:10px;color:var(--secondary-light);font-size:.84rem;font-weight:600;text-decoration:none;transition:all .3s ease;"
+                       onmouseover="this.style.background='rgba(217,154,30,.12)'"
                        onmouseout="this.style.background='transparent'">
                         View All Notices <i class="fas fa-arrow-right ms-1" style="font-size:11px"></i>
                     </a>
@@ -1207,10 +1207,10 @@
                         <div class="d-flex align-items-center gap-3">
                             @if($t->photo)
                                 <img src="{{ asset('storage/' . $t->photo) }}"
-                                     style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,151,58,.4);"
+                                     style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(217,154,30,.4);"
                                      alt="{{ $t->name }}">
                             @else
-                                <div style="width:42px;height:42px;border-radius:50%;background:rgba(200,151,58,.25);display:flex;align-items:center;justify-content:center;color:var(--secondary-light);font-weight:700;font-family:'Fraunces',serif;font-size:1.1rem;flex-shrink:0;">
+                                <div style="width:42px;height:42px;border-radius:50%;background:rgba(217,154,30,.25);display:flex;align-items:center;justify-content:center;color:var(--secondary-light);font-weight:700;font-family:'Fraunces',serif;font-size:1.1rem;flex-shrink:0;">
                                     {{ strtoupper(substr($t->name,0,1)) }}
                                 </div>
                             @endif
@@ -1234,7 +1234,7 @@
 ═════════════════════════════════════════════════════ --}}
 <section class="cta-section py-5 py-lg-6">
     <div class="container text-center" style="position:relative;z-index:1;" data-aos="fade-up">
-        <span style="display:inline-block;background:rgba(200,151,58,.2);color:var(--secondary-light);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;">Admissions {{ date('Y') }}-{{ date('Y')+1 }}</span>
+        <span style="display:inline-block;background:rgba(217,154,30,.2);color:var(--secondary-light);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;">Admissions {{ date('Y') }}-{{ date('Y')+1 }}</span>
         <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px;">
             Begin Your <span style="color:var(--secondary-light)">Legal Career</span> Journey Today
         </h2>

@@ -15,11 +15,11 @@
 
     <style>
         :root {
-            --primary:      #162450;
-            --primary-dark: #0a1228;
-            --secondary:    #C8973A;
-            --secondary-light: #e0b057;
-            --accent:       #8B1A1A;
+            --primary:      #1C1310;
+            --primary-dark: #0F0A08;
+            --secondary:    #D99A1E;
+            --secondary-light: #ECB94E;
+            --accent:       #B37C16;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,8 +33,8 @@
         /* ── Background ── */
         .cs-bg {
             min-height: 100vh;
-            background: radial-gradient(ellipse at 30% 50%, rgba(22,36,80,.95) 0%, #0a1020 70%),
-                        linear-gradient(160deg, #0a1228 0%, #162450 55%, #0a1020 100%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(28,19,16,.95) 0%, #120C09 70%),
+                        linear-gradient(160deg, #0F0A08 0%, #1C1310 55%, #120C09 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,7 +48,7 @@
         .cs-ring {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid rgba(200,151,58,.12);
+            border: 1px solid rgba(217,154,30,.12);
             animation: ringExpand var(--d, 6s) ease-out var(--delay, 0s) infinite;
             pointer-events: none;
         }
@@ -78,20 +78,20 @@
         .cs-logo {
             width: 110px; height: 110px;
             object-fit: contain;
-            filter: drop-shadow(0 0 28px rgba(200,151,58,.5));
+            filter: drop-shadow(0 0 28px rgba(217,154,30,.5));
             animation: logoPulse 3s ease-in-out infinite;
             position: relative; z-index: 2;
         }
         @keyframes logoPulse {
-            0%, 100% { filter: drop-shadow(0 0 28px rgba(200,151,58,.5)); }
-            50%       { filter: drop-shadow(0 0 48px rgba(200,151,58,.8)); }
+            0%, 100% { filter: drop-shadow(0 0 28px rgba(217,154,30,.5)); }
+            50%       { filter: drop-shadow(0 0 48px rgba(217,154,30,.8)); }
         }
 
         /* ── Main text ── */
         .cs-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(200,151,58,.15);
-            border: 1px solid rgba(200,151,58,.35);
+            background: rgba(217,154,30,.15);
+            border: 1px solid rgba(217,154,30,.35);
             color: var(--secondary-light);
             font-size: 11px; font-weight: 700;
             letter-spacing: .14em; text-transform: uppercase;
@@ -124,7 +124,7 @@
         }
         .countdown-box {
             background: rgba(255,255,255,.06);
-            border: 1px solid rgba(200,151,58,.22);
+            border: 1px solid rgba(217,154,30,.22);
             border-radius: 16px;
             padding: 18px 22px;
             min-width: 90px;
@@ -132,7 +132,7 @@
             backdrop-filter: blur(8px);
             transition: border-color .3s;
         }
-        .countdown-box:hover { border-color: rgba(200,151,58,.55); }
+        .countdown-box:hover { border-color: rgba(217,154,30,.55); }
         .countdown-num {
             font-family: 'Fraunces', serif;
             font-size: clamp(2rem, 5vw, 3rem);
@@ -157,7 +157,7 @@
         .cs-divider::before, .cs-divider::after {
             content: '';
             flex: 1; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(200,151,58,.35), transparent);
+            background: linear-gradient(90deg, transparent, rgba(217,154,30,.35), transparent);
         }
         .cs-divider span {
             color: var(--secondary); font-size: .7rem;
@@ -177,8 +177,8 @@
             backdrop-filter: blur(6px);
         }
         .cs-contact-chip:hover {
-            background: rgba(200,151,58,.2);
-            border-color: rgba(200,151,58,.5);
+            background: rgba(217,154,30,.2);
+            border-color: rgba(217,154,30,.5);
             color: #fff;
         }
         .cs-contact-chip i { color: var(--secondary); font-size: 13px; }
@@ -241,8 +241,8 @@
 
     {{-- Animated rings --}}
     <div class="cs-ring" style="width:320px;height:320px;--d:5s;--delay:0s;"></div>
-    <div class="cs-ring" style="width:520px;height:520px;--d:5s;--delay:1s;border-color:rgba(200,151,58,.07);"></div>
-    <div class="cs-ring" style="width:740px;height:740px;--d:5s;--delay:2s;border-color:rgba(200,151,58,.04);"></div>
+    <div class="cs-ring" style="width:520px;height:520px;--d:5s;--delay:1s;border-color:rgba(217,154,30,.07);"></div>
+    <div class="cs-ring" style="width:740px;height:740px;--d:5s;--delay:2s;border-color:rgba(217,154,30,.04);"></div>
 
     {{-- Content --}}
     <div class="text-center d-flex flex-column align-items-center gap-4" style="max-width:680px;width:100%;">

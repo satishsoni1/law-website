@@ -23,7 +23,7 @@
             {{-- Profile Card --}}
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
-                    <div class="py-5 px-4" style="background:linear-gradient(135deg,var(--primary) 0%,#4a0f0f 100%);">
+                    <div class="py-5 px-4" style="background:linear-gradient(135deg,var(--primary) 0%,#0F0A08 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;">
                             <img src="{{ asset('images/leadership/narendra-shah.svg') }}" alt="Mr. Narendra Shah" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>

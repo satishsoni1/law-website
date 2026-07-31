@@ -40,14 +40,14 @@
 
     <style>
         :root {
-            --primary: #162450;
-            --primary-light: #1e3368;
-            --primary-dark: #0a1228;
-            --secondary: #C8973A;
-            --secondary-light: #e0b057;
-            --accent: #8B1A1A;
-            --dark: #0a1020;
-            --light: #FAFAF8;
+            --primary: #1C1310;
+            --primary-light: #3A281F;
+            --primary-dark: #0F0A08;
+            --secondary: #D99A1E;
+            --secondary-light: #ECB94E;
+            --accent: #B37C16;
+            --dark: #120C09;
+            --light: #FAF6EA;
             --gray: #6c757d;
             --body-bg: #ffffff;
             --card-radius: 16px;
@@ -162,7 +162,7 @@
             transition: var(--transition);
         }
         .dropdown-item:hover {
-            background: rgba(22,36,80,.07);
+            background: rgba(28,19,16,.07);
             color: var(--primary);
         }
         .dropdown-header {
@@ -182,12 +182,12 @@
             font-size: .84rem;
             font-weight: 600;
             letter-spacing: 0.02em;
-            box-shadow: 0 2px 10px rgba(200,151,58,.3);
+            box-shadow: 0 2px 10px rgba(217,154,30,.3);
             transition: var(--transition);
         }
         .btn-apply-nav:hover {
-            background: linear-gradient(135deg, #a57a2a, var(--secondary));
-            box-shadow: 0 4px 18px rgba(200,151,58,.45);
+            background: linear-gradient(135deg, #B37C16, var(--secondary));
+            box-shadow: 0 4px 18px rgba(217,154,30,.45);
             transform: translateY(-1px);
         }
         .btn-apply-nav::after { display: none !important; }
@@ -224,7 +224,7 @@
         /* ── Section Titles ────────────────────────── */
         .section-label {
             display: inline-block;
-            background: rgba(22,36,80,.08);
+            background: rgba(28,19,16,.08);
             color: var(--primary);
             font-size: 11.5px;
             font-weight: 700;
@@ -403,7 +403,7 @@
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: #fff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(22,36,80,.3);
+            box-shadow: 0 6px 20px rgba(28,19,16,.3);
         }
         .btn-secondary-c {
             background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
@@ -415,7 +415,7 @@
         }
         .btn-secondary-c:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(200,151,58,.35);
+            box-shadow: 0 6px 20px rgba(217,154,30,.35);
             color: #fff;
         }
         .btn-outline-primary-c {
@@ -480,8 +480,8 @@
 
         .ldr-bg {
             position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 50% 45%, rgba(22,36,80,.85) 0%, #0a1020 70%),
-                        linear-gradient(160deg, #0a1228 0%, #162450 55%, #0a1020 100%);
+            background: radial-gradient(ellipse at 50% 45%, rgba(28,19,16,.85) 0%, #120C09 70%),
+                        linear-gradient(160deg, #0F0A08 0%, #1C1310 55%, #120C09 100%);
         }
         /* gold dust particles */
         .ldr-particle {
@@ -502,7 +502,7 @@
         .ldr-ring {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid rgba(200,151,58,.18);
+            border: 1px solid rgba(217,154,30,.18);
             animation: ringPulse var(--rd, 3s) ease-out var(--rdelay, 0s) infinite;
         }
         @keyframes ringPulse {
@@ -519,14 +519,14 @@
         .ldr-logo {
             width: 148px; height: 148px;
             object-fit: contain;
-            filter: drop-shadow(0 0 32px rgba(200,151,58,.55))
-                    drop-shadow(0 0 80px rgba(200,151,58,.25));
+            filter: drop-shadow(0 0 32px rgba(217,154,30,.55))
+                    drop-shadow(0 0 80px rgba(217,154,30,.25));
             display: block;
         }
         .ldr-logo-glow {
             position: absolute; inset: -28px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(200,151,58,.28) 0%, transparent 65%);
+            background: radial-gradient(circle, rgba(217,154,30,.28) 0%, transparent 65%);
             animation: glowBreath 2.2s ease-in-out infinite;
         }
         @keyframes logoBounceIn {
@@ -561,7 +561,7 @@
             animation: riseIn .7s ease 1.35s both;
         }
         .ldr-motto span { color: var(--secondary); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-        .ldr-motto .ldr-dot { color: rgba(200,151,58,.35); font-size: 1rem; }
+        .ldr-motto .ldr-dot { color: rgba(217,154,30,.35); font-size: 1rem; }
 
         /* progress bar */
         .ldr-progress {
@@ -598,7 +598,7 @@
             margin-top: 18px;
         }
         .ldr-lines .ldr-line {
-            height: 1px; background: linear-gradient(90deg, transparent, rgba(200,151,58,.45), transparent);
+            height: 1px; background: linear-gradient(90deg, transparent, rgba(217,154,30,.45), transparent);
             animation: lineGrow .8s ease 1.35s both;
         }
         @keyframes lineGrow {
@@ -616,9 +616,9 @@
 
         {{-- Animated rings --}}
         <div class="ldr-ring" style="width:240px;height:240px;--rd:2.8s;--rdelay:0s;"></div>
-        <div class="ldr-ring" style="width:340px;height:340px;--rd:2.8s;--rdelay:.5s;border-color:rgba(200,151,58,.11);"></div>
-        <div class="ldr-ring" style="width:460px;height:460px;--rd:2.8s;--rdelay:1s;border-color:rgba(200,151,58,.06);"></div>
-        <div class="ldr-ring" style="width:600px;height:600px;--rd:2.8s;--rdelay:1.5s;border-color:rgba(200,151,58,.03);"></div>
+        <div class="ldr-ring" style="width:340px;height:340px;--rd:2.8s;--rdelay:.5s;border-color:rgba(217,154,30,.11);"></div>
+        <div class="ldr-ring" style="width:460px;height:460px;--rd:2.8s;--rdelay:1s;border-color:rgba(217,154,30,.06);"></div>
+        <div class="ldr-ring" style="width:600px;height:600px;--rd:2.8s;--rdelay:1.5s;border-color:rgba(217,154,30,.03);"></div>
 
         {{-- Logo --}}
         <div class="ldr-logo-wrap">
@@ -629,7 +629,7 @@
         {{-- Horizontal decorative lines --}}
         <div class="ldr-lines">
             <div class="ldr-line" style="width:60px;"></div>
-            <div style="color:rgba(200,151,58,.4);font-size:.6rem;letter-spacing:.2em;animation:riseIn .5s ease 1.35s both;opacity:0;">EST. 2024</div>
+            <div style="color:rgba(217,154,30,.4);font-size:.6rem;letter-spacing:.2em;animation:riseIn .5s ease 1.35s both;opacity:0;">EST. 2024</div>
             <div class="ldr-line" style="width:60px;"></div>
         </div>
 
@@ -797,11 +797,11 @@
     @endif
 
     @if(session('staging_access'))
-    <div style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#162450;color:#fff;font-size:12px;font-weight:600;text-align:center;padding:8px;letter-spacing:.04em;">
-        <i class="fas fa-eye me-2" style="color:#C8973A"></i>
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1C1310;color:#fff;font-size:12px;font-weight:600;text-align:center;padding:8px;letter-spacing:.04em;">
+        <i class="fas fa-eye me-2" style="color:#D99A1E"></i>
         STAGING PREVIEW MODE — Website is currently in Coming Soon mode for public visitors.
         &nbsp;
-        <a href="{{ route('staging.exit') }}" style="color:#C8973A;text-decoration:underline;">Exit Preview</a>
+        <a href="{{ route('staging.exit') }}" style="color:#D99A1E;text-decoration:underline;">Exit Preview</a>
     </div>
     @endif
 
@@ -815,7 +815,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-brand mb-3">
                         <div class="d-flex align-items-center gap-3 mb-2">
-                            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:60px;width:60px;object-fit:contain;background:#162450;border-radius:50%;padding:4px;">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:60px;width:60px;object-fit:contain;background:#1C1310;border-radius:50%;padding:4px;">
                             <h4 class="mb-0">K.T.S.P.M's Law College</h4>
                         </div>
                         <p style="font-size:.875rem;line-height:1.75;margin-top:10px;">
@@ -866,13 +866,13 @@
                     <h6 class="footer-heading">Get In Touch</h6>
                     <div class="d-flex flex-column gap-3">
                         <a href="tel:{{ \App\Models\Setting::get('phone') }}" class="d-flex align-items-center gap-2" style="display:inline-flex !important;">
-                            <span style="width:32px;height:32px;background:rgba(200,151,58,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <span style="width:32px;height:32px;background:rgba(217,154,30,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                                 <i class="fas fa-phone-alt" style="color:var(--secondary);font-size:13px;"></i>
                             </span>
                             <span style="color:rgba(255,255,255,.6);font-size:.875rem;">{{ \App\Models\Setting::get('phone', '+91 02192 000000') }}</span>
                         </a>
                         <a href="mailto:{{ \App\Models\Setting::get('email') }}" class="d-flex align-items-center gap-2" style="display:inline-flex !important;">
-                            <span style="width:32px;height:32px;background:rgba(200,151,58,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <span style="width:32px;height:32px;background:rgba(217,154,30,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                                 <i class="fas fa-envelope" style="color:var(--secondary);font-size:13px;"></i>
                             </span>
                             <span style="color:rgba(255,255,255,.6);font-size:.875rem;">{{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</span>

@@ -24,7 +24,7 @@
             {{-- Profile Card --}}
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
-                    <div class="py-5 px-4" style="background:linear-gradient(135deg,#8a6200 0%,#C8973A 100%);">
+                    <div class="py-5 px-4" style="background:linear-gradient(135deg,#B37C16 0%,#D99A1E 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid #fff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
                             <img src="https://kmccollege.in/storage/Jalgaonkar%20sir.jpg" alt="Vice-Chairman" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>
@@ -69,7 +69,7 @@
                     <p>Let us together work towards building a community of justice, equality, and integrity — one student at a time.</p>
 
                     <p style="margin-top:2rem;">With sincere regards,</p>
-                    <div class="mt-3 p-4 rounded-3 d-inline-block" style="background:linear-gradient(135deg,#8a6200,#C8973A);color:#fff;min-width:280px;">
+                    <div class="mt-3 p-4 rounded-3 d-inline-block" style="background:linear-gradient(135deg,#B37C16,#D99A1E);color:#fff;min-width:280px;">
                         <h5 class="mb-1">Shri. Abubakar Aadam Jalgaonkar</h5>
                         <p class="mb-0 opacity-85">Vice-Chairman, K.T.S.P. Mandal</p>
                         <small class="opacity-75">Khalapur Taluka Shikshan Prasarak Mandal, Khopoli</small>
