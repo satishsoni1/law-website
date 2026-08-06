@@ -25,7 +25,7 @@
                 <div class="card border-0 shadow text-center" style="border-radius:16px;overflow:hidden;position:sticky;top:90px;">
                     <div class="py-5 px-4" style="background:linear-gradient(135deg,var(--primary) 0%,#0F0A08 100%);">
                         <div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.15);border:4px solid var(--secondary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;">
-                            <img src="{{ asset('images/leadership/narendra-shah.svg') }}" alt="Mr. Narendra Shah" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
+                            <img src="{{ asset('images/leadership/narendra-shah.jpg') }}" alt="Mr. Narendra Shah" style="width:110px;height:110px;border-radius:50%;object-fit:cover;">
                         </div>
                         <h4 class="text-white mb-1">Mr. Narendra Shah</h4>
                         <span class="badge px-3 py-2 mt-1" style="background:var(--secondary);font-size:.9rem;">Chairman</span>
