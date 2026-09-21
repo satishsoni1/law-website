@@ -2,6 +2,10 @@
 
 @push('styles')
 <style>
+    /* ── Toppers tabs ──────────────────────────────── */
+    .toppers-tabs .nav-link { color:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.25); border-radius:50px; padding:9px 24px; font-weight:600; }
+    .toppers-tabs .nav-link small { opacity:.7; font-weight:500; }
+    .toppers-tabs .nav-link.active { background:linear-gradient(135deg,var(--secondary),var(--secondary-light)); color:var(--primary); border-color:transparent; }
     /* ── Hero ──────────────────────────────────────── */
     .hero-section {
         position: relative;
@@ -1097,6 +1101,42 @@
     </div>
 </section>
 @endif
+
+{{-- ══════════════════════════════════════════════════
+     TOPPERS
+═════════════════════════════════════════════════════ --}}
+<section class="py-5 py-lg-6" style="background:linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);position:relative;overflow:hidden;">
+    <div class="container">
+        <div class="text-center mb-4" data-aos="fade-up">
+            <span class="section-label" style="color:var(--secondary-light);">Academic Excellence</span>
+            <h2 style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:#fff;margin:8px 0 0;">Our <span style="color:var(--secondary-light)">Toppers</span></h2>
+            <div class="title-divider center mt-3"></div>
+            <p class="mt-3 mb-0" style="color:rgba(255,255,255,.7);">Congratulations to our brightest minds of {{ config('toppers.session') }}</p>
+        </div>
+
+        <ul class="nav nav-pills justify-content-center gap-2 mb-5 toppers-tabs" role="tablist">
+            @foreach(config('toppers.batches') as $batch)
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="pill" data-bs-target="#topper-{{ $batch['key'] }}" type="button" role="tab">
+                        {{ $batch['label'] }} <small>({{ $batch['admitted'] }})</small>
+                    </button>
+                </li>
+            @endforeach
+        </ul>
+
+        <div class="tab-content pt-5">
+            @foreach(config('toppers.batches') as $batch)
+                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="topper-{{ $batch['key'] }}" role="tabpanel">
+                    @include('front.partials.toppers-podium', ['batch' => $batch])
+                </div>
+            @endforeach
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('toppers') }}" class="btn-outline-primary-c" style="border-color:var(--secondary-light);color:var(--secondary-light);">View All Toppers</a>
+        </div>
+    </div>
+</section>
 
 {{-- ══════════════════════════════════════════════════
      NEWS & EVENTS

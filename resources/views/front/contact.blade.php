@@ -28,7 +28,7 @@
                 </div>
                 <div class="d-flex gap-3 mb-4">
                     <div style="width:50px;height:50px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-envelope text-white"></i></div>
-                    <div><h6>Email</h6><p class="text-muted mb-0">{{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</p></div>
+                    <div><h6>Email</h6><p class="text-muted mb-0">{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</p></div>
                 </div>
                 @php $map = \App\Models\Setting::get('google_map_embed'); @endphp
                 @if($map)

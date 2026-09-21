@@ -9,7 +9,7 @@
         <p><strong>Name:</strong> Principal / Designated PIO<br>
         <strong>Address:</strong> {{ \App\Models\Setting::get('address', 'K.T.S.P.M\'s Law College, Khopoli, Raigad') }}<br>
         <strong>Phone:</strong> {{ \App\Models\Setting::get('phone', '+91 02192 000000') }}<br>
-        <strong>Email:</strong> {{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</p>
+        <strong>Email:</strong> {{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</p>
         <h5 class="mt-4">How to File an RTI Application</h5>
         <ol><li>Submit a written application to the PIO</li><li>Pay the prescribed fee of ₹10</li><li>Information shall be provided within 30 days</li></ol>
     </div>

@@ -62,6 +62,9 @@ Route::middleware('coming-soon')->group(function () {
     // Faculty
     Route::get('/faculty', [FacultyController::class, 'index'])->name('faculty.index');
 
+    // Toppers
+    Route::get('/toppers', [PageController::class, 'toppers'])->name('toppers');
+
     // Admissions
     Route::get('/admissions', [AdmissionController::class, 'index'])->name('admissions.index');
     Route::post('/admissions/apply', [AdmissionController::class, 'store'])->name('admissions.store');

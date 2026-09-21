@@ -51,6 +51,11 @@ class PageController extends Controller
         return view('front.mandal.about');
     }
 
+    public function toppers()
+    {
+        return view('front.toppers');
+    }
+
     public function governingBody()
     {
         return view('front.mandal.governing-body');

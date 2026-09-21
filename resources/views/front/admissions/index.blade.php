@@ -239,7 +239,7 @@
                         <h5 class="text-maroon mb-3">Need Help?</h5>
                         <p class="text-muted">Contact our admissions office:</p>
                         <p><i class="fas fa-phone text-maroon me-2"></i>{{ \App\Models\Setting::get('phone', '+91 02192 000000') }}</p>
-                        <p><i class="fas fa-envelope text-maroon me-2"></i>{{ \App\Models\Setting::get('email', 'admissions@ktspmlawcollege.edu.in') }}</p>
+                        <p><i class="fas fa-envelope text-maroon me-2"></i>{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</p>
                     </div>
                 </div>
             </div>

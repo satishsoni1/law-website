@@ -12,7 +12,7 @@
         <h5 class="mt-4">Data Security</h5>
         <p>We implement appropriate security measures to protect your information from unauthorized access, alteration, or disclosure.</p>
         <h5 class="mt-4">Contact</h5>
-        <p>For privacy concerns, contact us at: {{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</p>
+        <p>For privacy concerns, contact us at: {{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</p>
     </div>
 </section>
 @endsection

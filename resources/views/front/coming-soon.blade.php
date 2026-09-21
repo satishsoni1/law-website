@@ -314,7 +314,7 @@
         <div class="d-flex flex-wrap gap-3 justify-content-center" style="position:relative;z-index:2;">
             @php
                 $phone = \App\Models\Setting::get('phone', '+91 02192 282828');
-                $email = \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in');
+                $email = \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com');
                 $addr  = \App\Models\Setting::get('address', 'Khopoli, Raigad, Maharashtra - 410203');
             @endphp
             <a href="tel:{{ $phone }}" class="cs-contact-chip">

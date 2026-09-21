@@ -700,7 +700,7 @@
                     <a href="tel:{{ \App\Models\Setting::get('phone') }}">{{ \App\Models\Setting::get('phone', '+91 02192 000000') }}</a>
                     <span class="divider">|</span>
                     <i class="fas fa-envelope me-1" style="font-size:11px;color:var(--secondary)"></i>
-                    <a href="mailto:{{ \App\Models\Setting::get('email') }}">{{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</a>
+                    <a href="mailto:{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}">{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</a>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     @php
@@ -766,10 +766,11 @@
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('news.*') ? 'active' : '' }}" href="{{ route('news.index') }}">News & Events</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item {{ request()->routeIs('gallery.*') ? 'active' : '' }}" href="{{ route('gallery.index') }}">Gallery</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-item dropdown-toggle {{ request()->routeIs('downloads.*','legal-aid','admissions.*') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">Academics</a>
+                        <a class="nav-link nav-link-item dropdown-toggle {{ request()->routeIs('downloads.*','legal-aid','admissions.*','toppers') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">Academics</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('admissions.index') }}"><i class="fas fa-graduation-cap me-2 text-primary-c"></i>Admissions</a></li>
                             <li><a class="dropdown-item" href="{{ route('downloads.index') }}"><i class="fas fa-download me-2 text-primary-c"></i>Syllabus &amp; Downloads</a></li>
+                            <li><a class="dropdown-item" href="{{ route('toppers') }}"><i class="fas fa-trophy me-2 text-primary-c"></i>Toppers</a></li>
                             <li><hr class="dropdown-divider my-1"></li>
                             <li><a class="dropdown-item" href="{{ route('legal-aid') }}"><i class="fas fa-hands-helping me-2 text-secondary-c"></i>Legal Aid Committee</a></li>
                         </ul>
@@ -871,11 +872,11 @@
                             </span>
                             <span style="color:rgba(255,255,255,.6);font-size:.875rem;">{{ \App\Models\Setting::get('phone', '+91 02192 000000') }}</span>
                         </a>
-                        <a href="mailto:{{ \App\Models\Setting::get('email') }}" class="d-flex align-items-center gap-2" style="display:inline-flex !important;">
+                        <a href="mailto:{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}" class="d-flex align-items-center gap-2" style="display:inline-flex !important;">
                             <span style="width:32px;height:32px;background:rgba(217,154,30,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                                 <i class="fas fa-envelope" style="color:var(--secondary);font-size:13px;"></i>
                             </span>
-                            <span style="color:rgba(255,255,255,.6);font-size:.875rem;">{{ \App\Models\Setting::get('email', 'info@ktspmlawcollege.edu.in') }}</span>
+                            <span style="color:rgba(255,255,255,.6);font-size:.875rem;">{{ \App\Models\Setting::get('email', 'ktspmslawcollege2024@gmail.com') }}</span>
                         </a>
                     </div>
                     @php $map = \App\Models\Setting::get('google_map_embed'); @endphp

@@ -83,11 +83,10 @@
                             ['16', 'Shri. Narendra Chandulal Shah',           'Member'],
                             ['17', 'Shri. Vipul Vijay Mhatre',               'Member'],
                             ['18', 'Shri. Ananta Dundaji Hadap',              'Member'],
-                            ['19', 'Shri. Yeshwant Laxman Sable',            'Member'],
-                            ['20', 'Shri. Kailas Maruti Gaikwad',            'Member'],
-                            ['21', 'Shri. Vijay Sakharam Churi',             'Member'],
-                            ['22', 'Shri. Rahul Gajanan Mahakal',            'Member'],
-                            ['23', 'Mr. Pradeep Deshmukh',                   'Ex-Officio Secretary'],
+                            ['19', 'Shri. Kailas Maruti Gaikwad',             'Member'],
+                            ['20', 'Shri. Vijay Sakharam Churi',              'Member'],
+                            ['21', 'Shri. Rahul Gajanan Mahakal',             'Member'],
+                            ['22', 'Shri. Kanifnath Murlidhar Gore',          'Ex-Officio Secretary'],
                         ];
                         @endphp
                         @foreach($members as [$sr, $name, $role])

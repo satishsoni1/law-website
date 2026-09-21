@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'college_tagline' => 'Affiliated to University of Mumbai | Approved by Bar Council of India',
             'address'         => 'Khopoli, Raigad, Maharashtra - 410203',
             'phone'           => '+91 02192 282828',
-            'email'           => 'info@ktspmlawcollege.edu.in',
+            'email'           => 'ktspmslawcollege2024@gmail.com',
             'whatsapp_number' => '9876543210',
             'about_short'     => 'Affiliated to University of Mumbai, offering LL.B. (3 Years) program. Approved by Bar Council of India.',
             'footer_text'     => '&copy; ' . date('Y') . " K.T.S.P.M's Law College, Khopoli. All rights reserved.",
